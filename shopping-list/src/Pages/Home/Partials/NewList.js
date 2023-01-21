@@ -2,7 +2,7 @@ import React from 'react'
 
 // Firebase
 import { db } from '../../../firebase'
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc } from "firebase/firestore";
 
 export default function MyLists() {
   const [listTitle, setListTitle] = React.useState('')
@@ -28,22 +28,40 @@ export default function MyLists() {
     setListDescription('')
   };
 
-  return (
-    <div>
-      <input
-        type='text'
-        placeholder='List Title'
-        value={listTitle}
-        onChange={(e) => setListTitle(e.target.value)}
-      />
-      <input
-        type='text'
-        placeholder='List Description'
-        value={listDescription}
-        onChange={(e) => setListDescription(e.target.value)}
-      />
+  const reset = () => {
+    setListTitle('')
+    setListDescription('')
+  }
 
-      <button onClick={submitToDB}>Submit</button>
-    </div >
+  return (
+    <div class="px-[2.5vw] py-[3vh]">
+      <h3 class="text-[3rem] font-semibold">Create New List</h3>
+      <div class="h-[1vh]"></div>
+      <div class="flex flex-col">
+        <div>
+          <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+            type='text'
+            placeholder='List Title'
+            value={listTitle}
+            onChange={(e) => setListTitle(e.target.value)}
+          />
+          <div class="h-[2vh]"></div>
+          <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+            type='text'
+            placeholder='List Description'
+            value={listDescription}
+            onChange={(e) => setListDescription(e.target.value)}
+          />
+
+        </div>
+        <div class="h-[2.5vh]"></div>
+        <h4 class="text-[2.5rem] font-semibold">Share with</h4>
+        <div class="h-[1vh]"></div>
+        <div class="flex on_desktop:gap-[1.25vw] on_mobile:gap-[2.5vh] on_mobile:flex-col">
+          <button onClick={submitToDB} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Submit</button>
+          <button onclick={reset} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Reset</button>
+        </div>
+      </div>
+    </div>
   )
 }
