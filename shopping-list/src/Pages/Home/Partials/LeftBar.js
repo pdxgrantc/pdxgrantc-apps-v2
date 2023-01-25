@@ -1,5 +1,9 @@
 import React from 'react'
 
+// Firebase
+import { db, auth } from '../../../firebase'
+import { collection, getDocs } from "firebase/firestore";
+
 export default function LeftBar() {
     return (
         <div class="bg-black h-full flex flex-col">
@@ -39,15 +43,30 @@ function Lists() {
     }
 }
 
+const getYourLists = async () => {
+    console.log('getYourLists() called')
+    const lists = [];
+    const querySnapshot = await getDocs(collection(db, "users", auth.currentUser.uid, "lists"));
+    querySnapshot.forEach((doc) => {
+        lists.push(doc.data());
+    });
+    // print out the lists
+    lists.forEach((list) => {
+        console.log(list.id);
+        console.log(list.title);
+    });
+    return lists;
+}
+
 function YourLists() {
+
+
+    const lists = getYourLists()
     return (
         <div class="flex flex-col text-[1.25rem]">
-            <p>List Item</p>
-            <p>List Item</p>
-            <p>List Item</p>
-            <p>List Item</p>
-            <p>List Item</p>
-            <p>List Item</p>
+            {lists.map((list) => (
+                <p>{list.title}</p>
+            ))}
         </div>
     )
 }

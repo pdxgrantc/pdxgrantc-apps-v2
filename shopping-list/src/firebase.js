@@ -31,8 +31,7 @@ export const signInWithGoogle = () => {
                 user_since: new Date(),
             });
         }
-    }
-    )
+    })
 };
 
 export const signOutUser = () => {
