@@ -13,8 +13,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const user = auth.currentUser;
 export const db = getFirestore(app);
+
+const user = auth.currentUser;
 
 export const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -28,7 +29,6 @@ export const signInWithGoogle = () => {
                 name: user.displayName,
                 photo: user.photoURL,
                 user_since: new Date(),
-                lists: []
             });
         }
     }
