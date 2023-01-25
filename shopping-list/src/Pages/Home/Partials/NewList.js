@@ -1,7 +1,8 @@
 import React from 'react'
 
 // Firebase
-import { db } from '../../../firebase'
+import { db, auth } from '../../../firebase'
+import { getAuth } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 
 // function to check if a document exists
@@ -9,28 +10,15 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 // https://stackoverflow.com/questions/57868564/how-to-check-if-a-document-exists-in-firestore/57868712#57868712
 
 export default function MyLists() {
-
   const [listTitle, setListTitle] = React.useState('')
   const [listDescription, setListDescription] = React.useState('')
 
-  function checkIfDocExists(title) {
-    const docRef = doc(db, "lists", title);
-    getDoc(docRef).then((docSnap) => {
-      console.log(docSnap)
-      console.log(docSnap.exists())
-      return true
-    });
-    return false
-  }
-
   const submitToDB = (e) => {
-
     if (listTitle === '') {
       alert('Please enter a list title')
       return
     }
     e.preventDefault();
-
 
     const docRef = doc(db, "lists", listTitle);
     getDoc(docRef).then((docSnap) => {
@@ -39,9 +27,11 @@ export default function MyLists() {
       }
       else {
         // add to collection
+        const user = auth.currentUser;
         setDoc(doc(db, "lists", listTitle), {
           list_title: listTitle,
           description: listDescription,
+          owner: user.email,
           created_at: new Date(),
           last_edited_at: new Date(),
           items: [],
@@ -52,7 +42,6 @@ export default function MyLists() {
         setListDescription('')
       }
     })
-
   };
 
   const reset = () => {
