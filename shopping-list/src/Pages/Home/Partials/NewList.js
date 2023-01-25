@@ -7,46 +7,52 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 // function to check if a document exists
 // https://stackoverflow.com/questions/57868564/how-to-check-if-a-document-exists-in-firestore
 // https://stackoverflow.com/questions/57868564/how-to-check-if-a-document-exists-in-firestore/57868712#57868712
-function checkIfDocExists(title) {
-  const docRef = doc(db, "lists", title);
-  getDoc(docRef).then((docSnap) => {
-    console.log(docSnap)
-    console.log(docSnap.exists())
-    return docSnap.exists()
-  });
-}
-
-
 
 export default function MyLists() {
 
   const [listTitle, setListTitle] = React.useState('')
   const [listDescription, setListDescription] = React.useState('')
 
+  function checkIfDocExists(title) {
+    const docRef = doc(db, "lists", title);
+    getDoc(docRef).then((docSnap) => {
+      console.log(docSnap)
+      console.log(docSnap.exists())
+      return true
+    });
+    return false
+  }
+
   const submitToDB = (e) => {
+
     if (listTitle === '') {
       alert('Please enter a list title')
       return
     }
     e.preventDefault();
-    if (checkIfDocExists(listTitle)) {
-      alert('List title already exists')
-      return
-    }
 
 
-    // add to collection
-    setDoc(doc(db, "lists", listTitle), {
-      list_title: listTitle,
-      description: listDescription,
-      created_at: new Date(),
-      last_edited_at: new Date(),
-      items: [],
-      shared_with: [],
-      cost: 0
-    });
-    setListTitle('')
-    setListDescription('')
+    const docRef = doc(db, "lists", listTitle);
+    getDoc(docRef).then((docSnap) => {
+      if (docSnap.exists()) {
+        alert('List title already exists')
+      }
+      else {
+        // add to collection
+        setDoc(doc(db, "lists", listTitle), {
+          list_title: listTitle,
+          description: listDescription,
+          created_at: new Date(),
+          last_edited_at: new Date(),
+          items: [],
+          shared_with: [],
+          cost: 0
+        });
+        setListTitle('')
+        setListDescription('')
+      }
+    })
+
   };
 
   const reset = () => {
