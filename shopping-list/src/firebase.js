@@ -15,23 +15,25 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-const user = auth.currentUser;
-
 export const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider);
-
-    const docRef = doc(db, "users", user.email);
-    getDoc(docRef).then((docSnap) => {
-        if (!(docSnap.exists())) {
-            setDoc(doc(db, "users", user.email), {
-                email: user.email,
-                name: user.displayName,
-                photo: user.photoURL,
-                user_since: new Date(),
-            });
-        }
-    })
+    signInWithPopup(auth, provider).then((result) => {
+        const user = result.user;
+        const path = "users/" + user.uid;
+        const docRef = doc(db, path);
+        getDoc(docRef).then((docSnap) => {
+            if (!docSnap.exists()) {
+                setDoc(doc(db, path), {
+                    email: user.email,
+                    name: user.displayName,
+                    photo: user.photoURL,
+                    user_since: new Date()
+                });
+            }
+        });
+    }).catch((error) => {
+        console.log(error);
+    });
 };
 
 export const signOutUser = () => {
