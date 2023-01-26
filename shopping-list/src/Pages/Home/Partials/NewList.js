@@ -15,7 +15,7 @@ export default function MyLists() {
     }
     e.preventDefault();
 
-    const path = "users/" + auth.currentUser.email + "/lists";
+    const path = "users/" + auth.currentUser.uid + "/lists";
     const docRef = doc(db, path, listTitle);
     // check if list title already exists
     getDoc(docRef).then((docSnap) => {
@@ -69,7 +69,6 @@ export default function MyLists() {
             value={listDescription}
             onChange={(e) => setListDescription(e.target.value)}
           />
-
         </div>
         <div class="h-[2.5vh]"></div>
         <h4 class="text-[2.5rem] font-semibold">Share with</h4>

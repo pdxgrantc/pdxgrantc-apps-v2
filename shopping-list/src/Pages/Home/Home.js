@@ -100,14 +100,13 @@ function Lists() {
     }
 }
 
-
 function YourLists() {
     const [lists, setLists] = React.useState([])
 
     React.useEffect(() => {
         const getYourLists = async () => {
             const lists = []
-            const querySnapshot = await getDocs(collection(db, "users", auth.currentUser.email, "lists"))
+            const querySnapshot = await getDocs(collection(db, "users", auth.currentUser.uid, "lists"))
             querySnapshot.forEach((doc) => {
                 lists.push(doc.data())
                 console.log(doc.data())
