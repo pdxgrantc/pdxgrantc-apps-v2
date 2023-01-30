@@ -1,10 +1,11 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import { Link } from 'react-router-dom';
 
 // Firebase
 import { auth, signInWithGoogle, db } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, where, orderBy, limit, query } from "firebase/firestore";
 
 // Partials
 import Header from '../Static/Partials/Header/Header';
@@ -67,7 +68,7 @@ function LeftBar() {
             <div class="px-[1.5vw] py-[3vh]">
                 <h2 class="text-[2.75rem]">Your Stuff</h2>
                 <div class="h-[1vh]"></div>
-                <Lists />
+                <MyLists />
                 <div class="h-[3vh]"></div>
                 <Friends />
             </div>
@@ -75,7 +76,7 @@ function LeftBar() {
     )
 }
 
-function Lists() {
+function MyLists() {
     if (window.location.pathname === "/") {
         return (
             <div>
@@ -106,7 +107,8 @@ function YourLists() {
     React.useEffect(() => {
         const getYourLists = async () => {
             const lists = []
-            const querySnapshot = await getDocs(collection(db, "users", auth.currentUser.uid, "lists"))
+            const q = query(collection(db, "lists"), where("owner", "==", auth.currentUser.uid), orderBy("last_edited_at", "desc"), limit(5))
+            const querySnapshot = await getDocs(q)
             querySnapshot.forEach((doc) => {
                 lists.push(doc.data())
                 console.log(doc.data())
@@ -125,7 +127,8 @@ function YourLists() {
         <div class="flex flex-col text-[1.25rem]">
 
             {lists.map((list) => (
-                <p>{list.list_title}</p>
+                console.log(list),
+                <Link to={"/my-lists/" + list.list_title_without_spaces}>{list.list_title}</Link>
             ))}
         </div>
     )

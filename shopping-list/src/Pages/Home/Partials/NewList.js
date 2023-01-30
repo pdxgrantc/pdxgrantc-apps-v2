@@ -13,10 +13,17 @@ export default function MyLists() {
       alert('Please enter a list title')
       return
     }
+    // check if list has _ in it
+    if (listTitle.includes("_")) {
+      alert('List title cannot contain _')
+      return
+    }
+    // remove spaces from list title
+    const listWithoutSpaces = listTitle.replace(" ", "_")
     e.preventDefault();
-
-    const path = "users/" + auth.currentUser.uid + "/lists";
-    const docRef = doc(db, path, listTitle);
+    // add to collection lists
+    const path = "lists/"
+    const docRef = doc(db, path, listWithoutSpaces);
     // check if list title already exists
     getDoc(docRef).then((docSnap) => {
       if (docSnap.exists()) {
@@ -28,10 +35,11 @@ export default function MyLists() {
       }
       else {
         // add to collection users lists
-        setDoc(doc(db, path, listTitle), {
+        setDoc(doc(db, path, listWithoutSpaces), {
           list_title: listTitle,
+          list_title_without_spaces: listWithoutSpaces,
           description: listDescription,
-          owner: auth.currentUser.email,
+          owner: auth.currentUser.uid,
           created_at: new Date(),
           last_edited_at: new Date(),
           items: [],
@@ -75,7 +83,7 @@ export default function MyLists() {
         <div class="h-[1vh]"></div>
         <div class="flex on_desktop:gap-[1.25vw] on_mobile:gap-[2.5vh] on_mobile:flex-col">
           <button onClick={submitToDB} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Submit</button>
-          <button onclick={reset} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Reset</button>
+          <button onClick={reset} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Reset</button>
         </div>
       </div>
     </div>

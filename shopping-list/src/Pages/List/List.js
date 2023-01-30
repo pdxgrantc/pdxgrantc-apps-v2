@@ -11,7 +11,8 @@ export default function List() {
 
     // get the list name from the url
     const location = useLocation()
-    const listName = location.pathname.split('/')[2]
+    const listWithoutSpaces = location.pathname.split('/')[2]
+    const listName = listWithoutSpaces.replace("_", " ")
 
     return (
         <div>
