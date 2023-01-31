@@ -45,8 +45,14 @@ export default function List() {
                 <div class="h-[5vh] min-h-[25px]"></div>
                 <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
                     <div>
-                        <h1 class="text-[3.5rem] font-semibold">{listName}</h1>
-                        <h2 class="text-[2.25rem]">{listDescription}</h2>
+                        <div>
+                            <div>
+                                <h1 class="text-[3.5rem] font-semibold">{listName}</h1>
+                            </div>
+                            <div>
+                                <h2 class="text-[2.25rem]">{listDescription}</h2>
+                            </div>
+                        </div>
                     </div>
                     <div class="h-[2.5vh] min-h-[15px]"></div>
                     <AddList />
@@ -87,16 +93,24 @@ function Items() {
     else {
         return (
             <div class="flex flex-col gap-[30px]">
-                <div>
-                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Name</h3>
-                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Cost</h3>
-                </div>
-                {items.map((item) => (
-                    <div class="flex justify-between gap-[30px]">
-                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
-                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
+                <div class="grid grid-cols-2">
+                    <div>
+                        <div class="grid grid-cols-2">
+                            <div>
+                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Name</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Cost</h3>
+                            </div>
+                        </div>
+                        {items.map((item) => (
+                            <div class="grid grid-cols-2">
+                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
+                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
         )
     }
@@ -135,8 +149,8 @@ function AddList() {
         setListTitle('')
         setListItemCost('')
     }
-    
-    
+
+
     return (
         <>
             <div class="flex justify-between gap-[30px]">
