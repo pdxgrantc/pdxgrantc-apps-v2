@@ -35,11 +35,11 @@ export default function Home() {
 function SignedIn() {
     return (
         <>
-            <div class="w-[26vw] h-full">
+            <div class="w-[35vw] min-w-fit h-full">
                 <LeftBar />
             </div>
             <div class="w-full bg-black">
-                {pageToggle ? <FindFriends /> : <NewList />}
+                <NewList />
             </div>
         </>
     )
@@ -67,9 +67,11 @@ function LeftBar() {
         <div class="bg-black h-full flex flex-col">
             <div class="px-[1.5vw] py-[3vh]">
                 <h3 class="text-[2.25rem] font-light">Welcome</h3>
-                <h2 class="text-[2.75rem] font-semibold leading-10 pb-[2vh]">{auth.currentUser.displayName}</h2>
+                <h2 class="text-[2.75rem] font-semibold leading-10 pb-[2vh] whitespace-nowrap">{auth.currentUser.displayName}</h2>
                 <div class="h-[1vh]"></div>
-                <MyLists />
+                <div class="min-h-[125px]">
+                    <MyLists />
+                </div>
                 <div class="h-[3vh]"></div>
                 <Friends />
             </div>
@@ -148,8 +150,8 @@ function Friends() {
 
 function YourFriends() {
     const [friends, setFriends] = React.useState([])
-    
-    
+
+
 
 
     if (friends.length === 0) {
