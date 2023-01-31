@@ -214,7 +214,6 @@ function AddList() {
                     onChange={(e) => setListTitle(e.target.value)}
                 />
                 <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
-                    type='text'
                     type='number'
                     placeholder='Item Cost'
                     value={listItemCost}
