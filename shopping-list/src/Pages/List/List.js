@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 
 // firebase
 import { auth, db } from '../../firebase'
-import { doc, collection, query, where, getDoc, getDocs } from 'firebase/firestore'
+import { doc, setDoc, collection, query, where, getDoc, getDocs } from 'firebase/firestore'
 
 // components
 import Header from '../Static/Partials/Header/Header'
@@ -49,9 +49,9 @@ export default function List() {
                         <h2 class="text-[2.25rem]">{listDescription}</h2>
                     </div>
                     <div class="h-[2.5vh] min-h-[15px]"></div>
-                    <Items />
-                    <div class="h-[2.5vh] min-h-[15px]"></div>
                     <AddList />
+                    <div class="h-[2.5vh] min-h-[15px]"></div>
+                    <Items />
                     <div></div>
                 </div>
             </div>
@@ -61,14 +61,68 @@ export default function List() {
 
 
 function Items() {
-    return (
-        <></>
-    )
+    const [items, setItems] = useState([])
+    const location = useLocation()
+    const listWithoutSpaces = location.pathname.split('/')[2]
+    const listName = listWithoutSpaces.replace("_", " ")
+
+    useEffect(() => {
+        const getItems = async () => {
+            const q = query(collection(db, "lists", listWithoutSpaces, "items"))
+            const querySnapshot = await getDocs(q)
+            const items = []
+            querySnapshot.forEach((doc) => {
+                items.push(doc.data())
+            })
+            setItems(items)
+        }
+        getItems()
+    }, [])
+
+    if (items.length === 0) {
+        return (
+            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">No items in list</h3>
+        )
+    }
+    else {
+        return (
+            <div class="flex flex-col gap-[30px]">
+                {items.map((item) => (
+                    <div class="flex justify-between gap-[30px]">
+                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
+                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
+                    </div>
+                ))}
+            </div>
+        )
+    }
 }
 
 function AddList() {
     const [listItemName, setListTitle] = useState('')
     const [listItemCost, setListItemCost] = useState('')
+    const location = useLocation()
+    const listWithoutSpaces = location.pathname.split('/')[2]
+    const listName = listWithoutSpaces.replace("_", " ")
+
+    const addListItem = async () => {
+        const docRef = doc(db, "lists", listWithoutSpaces, "items", listItemName)
+        // check if item already exists
+        const docSnap = await getDoc(docRef)
+        if (docSnap.exists()) {
+            alert('Item already exists')
+            return
+        }
+        // add item
+        await setDoc(docRef, {
+            name: listItemName,
+            cost: listItemCost
+        })
+        setListTitle('')
+        setListItemCost('')
+    }
+    
+    
     return (
         <>
             <div class="flex justify-between gap-[30px]">
@@ -85,7 +139,7 @@ function AddList() {
                     value={listItemCost}
                     onChange={(e) => setListItemCost(e.target.value)}
                 />
-                <button class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Add</button>
+                <button onClick={addListItem} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Add</button>
             </div>
         </>
     )

@@ -150,10 +150,6 @@ function Friends() {
 
 function YourFriends() {
     const [friends, setFriends] = React.useState([])
-
-
-
-
     if (friends.length === 0) {
         return (
             <div class="text-[1.75rem] leading-8">You have no friends</div>

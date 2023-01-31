@@ -42,7 +42,6 @@ export default function MyLists() {
           owner: auth.currentUser.uid,
           created_at: new Date(),
           last_edited_at: new Date(),
-          items: [],
           shared_with: [],
           cost: 0
         });
