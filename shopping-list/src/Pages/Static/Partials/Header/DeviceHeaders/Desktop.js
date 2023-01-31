@@ -6,23 +6,43 @@ import { auth, signInWithGoogle, signOutUser } from '../../../../../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
 
 export default function DesktopHeader() {
-    const [user] = useAuthState(auth);
+
+    // if user is null then user is not signed in
+
 
     return (
         <div class="flex justify-between h-full">
             <Link class="w-[20vw] bg-black pl-[3vw] text-[3.75rem] font-bold leading-[5.75rem] h-[10vh] cursor-pointer whitespace-nowrap" to="/">Ez Shop</Link>
             <div class="flex text-[2.75rem] font-semibold">
                 <div class="flex h-[85%] cursor-pointer over:ease-in-out duration-[350ms]">
-                    <Link class="h-fit align-middle px-[1.5vw] py-[.5vw] hover:bg-button_pressed_color hover:ease-in-out duration-[350ms]" to={"/" + auth.currentUser.displayName}>My Lists</Link>
                     <section>
-                        {user ? <SignOutComponent /> : <SignInComponent />}
+                        <SignInSwitch />
                     </section>
                 </div>
-                {/*<Link class="h-fit align-middle px-[1vw] py-[.5vw] hover:bg-button_pressed_color hover:cursor-pointer hover:ease-in-out duration-[350ms]" to="/Code">Code</Link>*/}
             </div>
         </div>
     )
 }
+
+function SignInSwitch() {
+    const [user] = useAuthState(auth);
+    if (user) {
+        return (
+            <>
+                <Link class="h-fit align-middle px-[1.5vw] py-[.5vw] hover:bg-button_pressed_color hover:ease-in-out duration-[350ms]" to={"/" + auth.currentUser.displayName}>My Lists</Link>
+                <SignOutComponent />
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <SignInComponent />
+            </>
+        )
+    }
+}
+
 
 function SignInComponent() {
     return (
