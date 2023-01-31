@@ -34,35 +34,54 @@ export default function List() {
         getListDescription()
     }, [])
 
-
-    return (
-        <>
-            <Helmet>
-                <title>{listName}</title>
-            </Helmet>
-            <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
-                <Header />
-                <div class="h-[5vh] min-h-[25px]"></div>
-                <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
-                    <div>
+    if (listDescription === 'List does not exist') {
+        return (
+            <>
+                <Helmet>
+                    <title>List Doesn't Exist</title>
+                </Helmet>
+                <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
+                    <Header />
+                    <div class="h-[5vh] min-h-[25px]"></div>
+                    <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
                         <div>
-                            <div>
-                                <h1 class="text-[3.5rem] font-semibold">{listName}</h1>
-                            </div>
-                            <div>
-                                <h2 class="text-[2.25rem]">{listDescription}</h2>
-                            </div>
+                            <h1 class="text-[4.5rem] text-center">This list does not exist.</h1>
                         </div>
                     </div>
-                    <div class="h-[2.5vh] min-h-[15px]"></div>
-                    <AddList />
-                    <div class="h-[2.5vh] min-h-[15px]"></div>
-                    <Items />
-                    <div></div>
                 </div>
-            </div>
-        </>
-    )
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <Helmet>
+                    <title>{listName}</title>
+                </Helmet>
+                <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
+                    <Header />
+                    <div class="h-[5vh] min-h-[25px]"></div>
+                    <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
+                        <div>
+                            <div>
+                                <div>
+                                    <h1 class="text-[3.5rem] font-semibold">{listName}</h1>
+                                </div>
+                                <div>
+                                    <h2 class="text-[2.25rem]">{listDescription}</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-[2.5vh] min-h-[15px]"></div>
+                        <AddList />
+                        <div class="h-[2.5vh] min-h-[15px]"></div>
+                        <Items />
+                        <div></div>
+                    </div>
+                </div>
+            </>
+        )
+    }
 }
 
 
@@ -71,6 +90,9 @@ function Items() {
     const location = useLocation()
     const listWithoutSpaces = location.pathname.split('/')[2]
     const listName = listWithoutSpaces.replace("_", " ")
+
+    // total cost
+    const [total, setTot] = useState(0)
 
     useEffect(() => {
         const getItems = async () => {
@@ -84,6 +106,15 @@ function Items() {
         }
         getItems()
     }, [])
+
+    useEffect(() => {
+        let total = 0
+        items.forEach((item) => {
+            total += item.cost
+        })
+        setTot(total)
+    }, [items])
+
 
     if (items.length === 0) {
         return (
@@ -105,10 +136,26 @@ function Items() {
                         </div>
                         {items.map((item) => (
                             <div class="grid grid-cols-2">
-                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
-                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
+                                <div>
+                                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
+                                </div>
+                                <div>
+                                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
+                                </div>
                             </div>
                         ))}
+                    </div>
+                </div>
+                <div class="grid grid-cols-2">
+                    <div class="grid grid-cols-2">
+                        <div>
+                            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Total Cost</h3>
+                        </div>
+                        <div>
+                            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">
+                                {total}
+                            </h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,6 +172,11 @@ function AddList() {
 
     const addListItem = async () => {
         const docRef = doc(db, "lists", listWithoutSpaces, "items", listItemName)
+        // check if input fields are empty
+        if (listItemName === '') {
+            alert('Please fill in all fields')
+            return
+        }
         // check if item already exists
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
@@ -134,7 +186,7 @@ function AddList() {
         // add item
         await setDoc(docRef, {
             name: listItemName,
-            cost: listItemCost
+            cost: parseInt(listItemCost)
         })
         // add price to list
         const listRef = doc(db, "lists", listWithoutSpaces)
@@ -163,6 +215,7 @@ function AddList() {
                 />
                 <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
                     type='text'
+                    type='number'
                     placeholder='Item Cost'
                     value={listItemCost}
                     onChange={(e) => setListItemCost(e.target.value)}
