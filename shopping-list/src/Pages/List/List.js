@@ -134,16 +134,21 @@ function Items() {
                                 <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Cost</h3>
                             </div>
                         </div>
-                        {items.map((item) => (
-                            <div class="grid grid-cols-2">
-                                <div>
-                                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
+                        <div class="pt-2">
+                            {items.map((item) => (
+                                <div class="grid grid-cols-2">
+                                    <div>
+                                        <h4 class="text-[1.75rem] whitespace-nowrap leading-10">{item.name}</h4>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-[1.75rem] whitespace-nowrap leading-10">{item.cost}</h4>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Users</h3>
                     </div>
                 </div>
                 <div class="grid grid-cols-2">

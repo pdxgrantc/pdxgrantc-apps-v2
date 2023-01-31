@@ -29,7 +29,7 @@ function SignInSwitch() {
     if (user) {
         return (
             <>
-                <Link class="h-fit align-middle px-[1.5vw] py-[.5vw] hover:bg-button_pressed_color hover:ease-in-out duration-[350ms]" to={"/" + auth.currentUser.displayName}>My Lists</Link>
+                <Link class="h-fit align-middle px-[1.5vw] py-[.5vw] hover:bg-button_pressed_color hover:ease-in-out duration-[350ms]" to={"/" + auth.currentUser.displayName}>Profile</Link>
                 <SignOutComponent />
             </>
         )
