@@ -87,6 +87,10 @@ function Items() {
     else {
         return (
             <div class="flex flex-col gap-[30px]">
+                <div>
+                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Name</h3>
+                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Cost</h3>
+                </div>
                 {items.map((item) => (
                     <div class="flex justify-between gap-[30px]">
                         <h3 class="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
@@ -118,6 +122,16 @@ function AddList() {
             name: listItemName,
             cost: listItemCost
         })
+        // add price to list
+        const listRef = doc(db, "lists", listWithoutSpaces)
+        const listSnap = await getDoc(listRef)
+        const listData = listSnap.data()
+        const listPrice = listData.price
+        const newPrice = listPrice + listItemCost
+        await setDoc(listRef, {
+            price: newPrice
+        })
+        // reset input fields
         setListTitle('')
         setListItemCost('')
     }
