@@ -66,7 +66,8 @@ function LeftBar() {
     return (
         <div class="bg-black h-full flex flex-col">
             <div class="px-[1.5vw] py-[3vh]">
-                <h2 class="text-[2.75rem]">Your Stuff</h2>
+                <h3 class="text-[2.25rem] font-light">Welcome</h3>
+                <h2 class="text-[2.75rem] font-semibold leading-10 pb-[2vh]">{auth.currentUser.displayName}</h2>
                 <div class="h-[1vh]"></div>
                 <MyLists />
                 <div class="h-[3vh]"></div>
@@ -77,28 +78,14 @@ function LeftBar() {
 }
 
 function MyLists() {
-    if (window.location.pathname === "/") {
-        return (
-            <div>
-                <h3 class="text-[1.75rem] font-semibold">Your Lists</h3>
-                <div class="text-[1.5rem]">
-                    <YourLists />
-                </div>
+    return (
+        <div>
+            <h3 class="text-[2.25rem] font-semibold">Your Lists</h3>
+            <div class="text-[1.5rem]">
+                <YourLists />
             </div>
-        )
-    }
-    else {
-        return (
-            <div>
-                <h3 class="text-[1.75rem] font-semibold">Your Lists</h3>
-                <div class="text-[1.5rem]">
-                    <YourLists />
-                    <div class="h-[.75vh]"></div>
-                    <h4 class="w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Create New List</h4>
-                </div>
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 function YourLists() {
@@ -111,12 +98,17 @@ function YourLists() {
             const querySnapshot = await getDocs(q)
             querySnapshot.forEach((doc) => {
                 lists.push(doc.data())
-                console.log(doc.data())
             })
             setLists(lists)
         }
         getYourLists()
     }, [])
+
+    if (lists.length === 0) {
+        return (
+            <div class="text-[1.75rem] leading-8">You have no lists</div>
+        )
+    }
 
     // map lists by last_edited_at 
     lists.sort((a, b) => {
@@ -125,10 +117,8 @@ function YourLists() {
 
     return (
         <div class="flex flex-col text-[1.25rem]">
-
             {lists.map((list) => (
-                console.log(list),
-                <Link to={"/my-lists/" + list.list_title_without_spaces}>{list.list_title}</Link>
+                <Link class="text-[1.75rem] leading-8" to={"/" + auth.currentUser.displayName + "/" + list.list_title_without_spaces}>{list.list_title}</Link>
             ))}
         </div>
     )
@@ -157,15 +147,25 @@ function Friends() {
 }
 
 function YourFriends() {
-    return (
-        <div class="flex flex-col text-[1.25rem]">
-            <p>Friend Item</p>
-            <p>Friend Item</p>
-            <p>Friend Item</p>
-            <p>Friend Item</p>
-            <p>Friend Item</p>
-        </div>
-    )
+    const [friends, setFriends] = React.useState([])
+    
+    
+
+
+    if (friends.length === 0) {
+        return (
+            <div class="text-[1.75rem] leading-8">You have no friends</div>
+        )
+    }
+    else {
+        return (
+            <div class="flex flex-col text-[1.25rem]">
+                {friends.map((friend) => (
+                    <p>Test</p>
+                ))}
+            </div>
+        )
+    }
 }
 
 // autocomplete https://www.telerik.com/blogs/quick-guide-dropdown-menus-react

@@ -9,8 +9,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path='/my-lists' element={<MyLists />} />
-        <Route path='/my-lists/:listName' element={<List />} />
+        <Route path='/:userName' element={<MyLists />} />
+        <Route path='/:userName/:listName' element={<List />} />
         <Route path='*' element={<h1>404 - Not Found</h1>} />
       </Routes>
     </BrowserRouter>

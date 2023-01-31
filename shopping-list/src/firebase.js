@@ -27,7 +27,8 @@ export const signInWithGoogle = () => {
                     email: user.email,
                     name: user.displayName,
                     photo: user.photoURL,
-                    user_since: new Date()
+                    user_since: new Date(),
+                    friends: [],
                 });
             }
         });
