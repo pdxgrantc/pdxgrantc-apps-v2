@@ -11,7 +11,7 @@ export default function Header() {
         <Desktop />
         <div class="h-[4vh]"></div>
       </div>
-      <div class="on_desktop:hidden">
+      <div class="w-full fixed on_desktop:hidden">
         <Mobile />
         <div class="h-[0vh]"></div>
       </div>

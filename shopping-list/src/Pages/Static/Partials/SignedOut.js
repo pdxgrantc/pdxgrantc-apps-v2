@@ -44,8 +44,8 @@ function Mobile() {
             <Helmet>
                 <title>Sign In</title>
             </Helmet>
-            <div class="h-full bg-black">
-                <div class="m-auto vertical py-[12vh] px-[10%] h-max bg-black">
+            <div class="h-full py-[7%] px-[7%]">
+                <div class="m-auto h-full vertical py-[12vh] px-[10%] bg-black ">
                     <div>
                         <h2 class="text-[1.5rem] text-center">You must be signed in to Google to use this app</h2>
                     </div>
