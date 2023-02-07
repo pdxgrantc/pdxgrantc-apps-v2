@@ -22,15 +22,34 @@ export default function Home() {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
-                <Header />
-                <div class="h-[5vh]"></div>
-                <div class="w-screen h-[85vh] flex gap-[5vw]">
-                    {user ? <SignedIn /> : <SignedOut />}
+            <div class="bg-main_bg_color text-text_white h-[100vh] flex flex-col">
+                <div class="h-fit basis-auto grow-0">
+                    <Header />
+                </div>
+                <div class="w-screen gap-[5vw] h-max basis-auto grow">
+                    <Content />
                 </div>
             </div>
         </>
     )
+}
+
+function Content() {
+    const [user] = useAuthState(auth);
+    if (user) {
+        return (
+            <>
+                <SignedIn />
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <SignedOut />
+            </>
+        )
+    }
 }
 
 function SignedIn() {
