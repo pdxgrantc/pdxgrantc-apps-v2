@@ -49,6 +49,8 @@ function SignOutComponent() {
 }
 
 function UserMenu() {
+  const [user] = useAuthState(auth);
+
   const triggerButton = (props, ref) => {
     return (
       <img
@@ -60,17 +62,35 @@ function UserMenu() {
     );
   };
 
-
-  return (
-    <div>
-      <Dropdown title="Dropdown" renderToggle={triggerButton}>
-        <Dropdown.Item>
-          <Link to='/'>Home</Link>
-        </Dropdown.Item>
-        <Dropdown.Item>
-          <Link to="/My-Lists">My Lists</Link>
-        </Dropdown.Item>
-      </Dropdown>
-    </div>
-  )
+  if (user) {
+    return (
+      <div>
+        <Dropdown title="Dropdown" renderToggle={triggerButton}>
+          <Dropdown.Item>
+            <Link to='/'>Home</Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <Link to="/My-Lists">My Lists</Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <p class="cursor-pointer" onClick={signOutUser}>Sign Out</p>
+          </Dropdown.Item>
+        </Dropdown>
+      </div>
+    )
+  }
+  else {
+    return (
+      <div>
+        <Dropdown title="Dropdown" renderToggle={triggerButton}>
+          <Dropdown.Item>
+            <Link to='/'>Home</Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <p class="cursor-pointer" onClick={signInWithGoogle}>Sign In</p>
+          </Dropdown.Item>
+        </Dropdown>
+      </div>
+    )
+  }
 }
