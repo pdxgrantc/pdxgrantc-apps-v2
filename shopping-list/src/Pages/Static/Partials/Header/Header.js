@@ -10,7 +10,7 @@ export default function Header() {
             <div class="on_mobile:hidden">
                 <Desktop />
             </div>
-            <div class="on_desktop:hidden flex justify-around bg-black w-[90vw] m-auto">
+            <div class="on_desktop:hidden bg-black">
                 <Mobile />
             </div>
         </>
