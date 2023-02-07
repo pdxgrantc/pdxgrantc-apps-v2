@@ -13,38 +13,16 @@ export default function Mobile() {
   const [user] = useAuthState(auth);
 
   return (
-    <div class="">
-      <div class="grid grid-cols-3 w-full content-between">
-        <div class="">test</div>
-        <div class="self-center">
-          <Link to="/" class="text-[2rem] font-semibold my-auto"> Ez Shop</Link>
+    <div class="bg-black h-fit py-[.3rem]">
+      <div class="flex justify-between px-[7vw]">
+        <div class="self-center w-fit">
+          <Link to="/" class="text-[2.25rem] font-bold">Ez Shop</Link>
         </div>
-        <div class="self-end ">
+        <div class="h-[5%] w-auto my-auto">
           <UserMenu />
-          {/* 
-          <>
-            {user ? <SignOutComponent /> : <SignInComponent />}
-          </>
-          */}
         </div>
       </div>
     </div>
-  )
-}
-
-function SignInComponent() {
-  return (
-    <>
-      <button onClick={signInWithGoogle} class="w-full bg-button_accent_color h-[7vh] px-[1.5vw] py-[.5vw] hover:bg-button_pressed_color hover:ease-in-out duration-[350ms]">Sign In</button>
-    </>
-  )
-}
-
-function SignOutComponent() {
-  return auth.currentUser && (
-    <>
-      <button onClick={signOutUser} class="mx-[0px] self-end text-[1.5rem] bg-button_accent_color h-[7vh] px-[4vw] py-[.5vw] hover:bg-button_pressed_color hover:ease-in-out duration-[350ms]">Sign Out</button>
-    </>
   )
 }
 
@@ -54,7 +32,7 @@ function UserMenu() {
   const triggerButton = (props, ref) => {
     return (
       <img
-        class="w-[7vh] h-[7vh]"
+        class="w-full h-full max-h-[50px] max-w-[50px] my-auto"
         {...props}
         ref={ref}
         src={PersonIcon}
@@ -64,33 +42,29 @@ function UserMenu() {
 
   if (user) {
     return (
-      <div>
-        <Dropdown title="Dropdown" renderToggle={triggerButton}>
-          <Dropdown.Item>
-            <Link to='/'>Home</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <Link to="/My-Lists">My Lists</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <p class="cursor-pointer" onClick={signOutUser}>Sign Out</p>
-          </Dropdown.Item>
-        </Dropdown>
-      </div>
+      <Dropdown title="Dropdown" renderToggle={triggerButton}>
+        <Dropdown.Item>
+          <Link to='/'>Home</Link>
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <Link to="/My-Lists">My Lists</Link>
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <p class="cursor-pointer" onClick={signOutUser}>Sign Out</p>
+        </Dropdown.Item>
+      </Dropdown>
     )
   }
   else {
     return (
-      <div>
-        <Dropdown title="Dropdown" renderToggle={triggerButton}>
-          <Dropdown.Item>
-            <Link to='/'>Home</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <p class="cursor-pointer" onClick={signInWithGoogle}>Sign In</p>
-          </Dropdown.Item>
-        </Dropdown>
-      </div>
+      <Dropdown title="Dropdown" renderToggle={triggerButton}>
+        <Dropdown.Item>
+          <Link to='/'>Home</Link>
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <p class="cursor-pointer" onClick={signInWithGoogle}>Sign In</p>
+        </Dropdown.Item>
+      </Dropdown>
     )
   }
 }

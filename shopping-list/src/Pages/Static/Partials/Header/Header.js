@@ -10,7 +10,7 @@ export default function Header() {
             <div class="on_mobile:hidden">
                 <Desktop />
             </div>
-            <div class="on_desktop:hidden bg-black">
+            <div class="on_desktop:hidden">
                 <Mobile />
             </div>
         </>
