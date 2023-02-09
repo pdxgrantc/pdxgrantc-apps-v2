@@ -23,11 +23,11 @@ export default function Home() {
                 <title>Home</title>
             </Helmet>
             <div class="bg-main_bg_color text-text_white h-[100vh] flex flex-col">
-                <div class="h-fit basis-auto grow-0">
+                <div class="basis-auto grow-0">
                     <Header />
                 </div>
                 <div class="w-screen gap-[5vw] h-max basis-auto grow">
-                    <Content />
+                    {/*<Content />*/}
                 </div>
             </div>
         </>

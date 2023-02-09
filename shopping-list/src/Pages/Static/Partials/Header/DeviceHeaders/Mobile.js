@@ -13,7 +13,7 @@ export default function Mobile() {
   const [user] = useAuthState(auth);
 
   return (
-    <div class="bg-black h-fit py-[.3rem]">
+    <div class="bg-dark_grey bg-opacity-90 py-[.3rem]">
       <div class="flex justify-between px-[7vw]">
         <div class="self-center w-fit">
           <Link to="/" class="text-[2.25rem] font-bold">Ez Shop</Link>

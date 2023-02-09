@@ -23,8 +23,7 @@ function Desktop() {
             <Helmet>
                 <title>Sign In</title>
             </Helmet>
-
-            <div class="m-auto mx-[7vw] vertical py-[12vh] bg-black">
+            <div class="m-auto mx-[7vw] py-[12vh] bg-black">
                 <div>
                     <h2 class="text-[3.25rem] text-center">You must be signed in</h2>
                     <h2 class="text-[3.25rem] text-center">to Google to use this app</h2>
@@ -44,7 +43,7 @@ function Mobile() {
             <Helmet>
                 <title>Sign In</title>
             </Helmet>
-            <div class="h-full py-[7%] px-[7%]">
+            <div class="h-full">
                 <div class="m-auto h-full vertical py-[12vh] px-[10%] bg-black ">
                     <div>
                         <h2 class="text-[1.5rem] text-center">You must be signed in to Google to use this app</h2>
