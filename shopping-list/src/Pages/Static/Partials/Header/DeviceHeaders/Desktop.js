@@ -11,6 +11,7 @@ import { ReactComponent as PersonIcon } from '../../../Images/PersonIcon.svg'
 import { ReactComponent as CogIcon } from '../../../Images/Cog.svg'
 import { ReactComponent as ChevronIcon } from '../../../Images/Chevron.svg'
 import { ReactComponent as ChevronLeft } from '../../../Images/ChevronLeft.svg'
+import { ReactComponent as Basket } from '../../../Images/Basket.svg'
 
 export default function DesktopHeader() {
     const [user] = useAuthState(auth);
@@ -21,9 +22,9 @@ export default function DesktopHeader() {
                 <div class="bg-dark_grey bg-opacity-90 w-[100%] h-[80px]">
                     <div class="h-[100%] flex justify-between pr-[3vw]">
                         <Link class="align-middle h-[100%] block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer " to="/">EZ Shop</Link>
-                        <div class="my-auto flex justify-around gap-[1.5vw]">
+                        <div class="my-auto flex justify-around">
                             <h1 class="m-auto text-[2.5rem] font-semibold">{user.displayName}</h1>
-                            <NavItem icon={<PersonIcon />}>
+                            <NavItem icon={<UserPhoto />}>
                                 <DropdownMenu></DropdownMenu>
                             </NavItem>
                         </div>
@@ -66,6 +67,15 @@ function NavItem(props) {
     );
 }
 
+function UserPhoto() {
+    const [user] = useAuthState(auth);
+
+    return (
+        <div>
+            <img className="rounded-[100%]" src={user.photoURL} alt={PersonIcon} />
+        </div>
+    )
+}
 
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
@@ -79,7 +89,7 @@ function DropdownMenu() {
 
     function DropdownItem(props) {
         return (
-            <Link to="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+            <Link to="#" className="menu-item whitespace-nowrap" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
                 {props.children}
                 <span className="icon-right">{props.rightIcon}</span>
@@ -97,10 +107,12 @@ function DropdownMenu() {
                 unmountOnExit>
 
                 <div className="menu">
-                    <DropdownItem
-                        leftIcon={<PersonIcon />}>
-                        My Profile
-                    </DropdownItem>
+                    <Link to="/My-Lists">
+                        <DropdownItem
+                            leftIcon={<Basket />}>
+                            My Lists
+                        </DropdownItem>
+                    </Link>
                     <DropdownItem
                         leftIcon={<CogIcon />}
                         rightIcon={<ChevronIcon />}
@@ -124,9 +136,10 @@ function DropdownMenu() {
                 unmountOnExit>
 
                 <div className="menu">
-                    <DropdownItem goToMenu="main" leftIcon={<CogIcon />}>
+                    <DropdownItem goToMenu="main" leftIcon={<ChevronLeft />}>
                         <h2>Go back</h2>
                     </DropdownItem>
+                    <DropdownItem leftIcon={<CogIcon />}>Settings</DropdownItem>
                 </div>
 
             </CSSTransition>

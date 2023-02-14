@@ -23,9 +23,6 @@
     padding: 0;
 }
 
-
-
-
 .nav-item {
     width: calc(var(--nav-size) * 1);
     display: flex;
@@ -35,7 +32,7 @@
 
 /* Icon Button */
 .icon-button {
-    --button-size: calc(var(--nav-size) * 0.8);
+    --button-size: calc(var(--nav-size) * 0.75);
     width: var(--button-size);
     height: var(--button-size);
     background-color: #484a4d;
@@ -60,12 +57,13 @@
 .dropdown {
     position: absolute;
     top: 80px;
-    width: fit-content;
+    font-size: 1.25rem;
+    width: 250px;
     transform: translateX(-34%);
     background-color: var(--bg);
     border: var(--border);
     border-radius: var(--border-radius);
-    padding: .5rem;
+    padding: .75rem;
     overflow: hidden;
     transition: height var(--speed) ease;
 }
@@ -75,19 +73,20 @@
 }
 
 .menu-item {
-    height: fit;
+    height: fit-content;
     display: flex;
     align-items: center;
     border-radius: var(--border-radius);
     transition: background var(--speed);
-    padding: 0.25rem;
-    padding-right: 3rem;
+    padding: 0.45rem;
+    padding-right: 2rem;
 }
 
 .menu-item .icon-button {
-    height: 40px;
-    width: 40px;
-    margin-right: 0.5rem;
+    height: 50px;
+    width: 50px;
+    margin-right: 1rem;
+    padding: 3px;
 }
 
 
