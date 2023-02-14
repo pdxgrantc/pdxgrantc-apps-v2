@@ -19,9 +19,9 @@ export default function DesktopHeader() {
     if (user) {
         return (
             <>
-                <div class="bg-dark_grey bg-opacity-90 w-[100%] h-[80px]">
+                <div class="bg-dark_grey w-[100%] h-[80px]">
                     <div class="h-[100%] flex justify-between pr-[3vw]">
-                        <Link class="align-middle h-[100%] block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer " to="/">EZ Shop</Link>
+                        <Link class="align-middle h-[100%] block w-fit bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer " to="/">EZ Shop</Link>
                         <div class="my-auto flex justify-around">
 
                             <TopNav icon={<UserPhoto />} name={user.displayName}>
@@ -37,7 +37,7 @@ export default function DesktopHeader() {
 
         return (
             <>
-                <div class="bg-dark_grey bg-opacity-90 w-[100%]">
+                <div class="bg-dark_grey w-[100%]">
                     <div class="flex justify-between pr-[3vw]">
                         <Link class="block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer py-0" to="/">EZ Shop</Link>
                         <div
@@ -54,7 +54,6 @@ export default function DesktopHeader() {
 }
 
 function TopNav(props) {
-    const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false);
 
     return (
@@ -72,6 +71,7 @@ function TopNav(props) {
     );
 }
 
+/*
 function NavItem(props) {
     const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false);
@@ -87,6 +87,7 @@ function NavItem(props) {
         </li>
     );
 }
+*/
 
 function UserPhoto() {
     const [user] = useAuthState(auth);
@@ -101,12 +102,14 @@ function UserPhoto() {
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
 
+    /*
     const [menuHeight, setMenuHeight] = useState(null);
 
     function calcHeight(el) {
         const height = el.offsetHeight;
         setMenuHeight(height);
     }
+    */
 
     function DropdownItem(props) {
         return (

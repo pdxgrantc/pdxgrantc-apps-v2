@@ -61,7 +61,6 @@ export default function MobileHeader() {
 }
 
 function TopNav(props) {
-  const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
 
   return (
@@ -78,6 +77,7 @@ function TopNav(props) {
   );
 }
 
+/*
 function NavItem(props) {
   const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
@@ -93,26 +93,19 @@ function NavItem(props) {
     </li>
   );
 }
-
-function UserPhoto() {
-  const [user] = useAuthState(auth);
-
-  return (
-    <div>
-      <img className="rounded-[100%]" src={user.photoURL} alt={PersonIcon} />
-    </div>
-  )
-}
+*/
 
 function DropdownMenu() {
   const [activeMenu, setActiveMenu] = useState('main');
 
+  /*
   const [menuHeight, setMenuHeight] = useState(null);
 
   function calcHeight(el) {
     const height = el.offsetHeight;
     setMenuHeight(height);
   }
+  */
 
   function DropdownItem(props) {
     return (
