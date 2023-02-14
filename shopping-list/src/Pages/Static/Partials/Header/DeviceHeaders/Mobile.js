@@ -134,12 +134,10 @@ function DropdownMenu() {
         unmountOnExit>
 
         <div className="menu">
-          <Link to="/My-Lists">
-            <DropdownItem
-              leftIcon={<Basket />}>
-              My Lists
-            </DropdownItem>
-          </Link>
+          <DropdownItem
+            leftIcon={<Basket />}>
+            <Link to="/MyLists">My Lists</Link>
+          </DropdownItem>
           <DropdownItem
             leftIcon={<CogIcon />}
             rightIcon={<ChevronIcon />}
@@ -154,7 +152,7 @@ function DropdownMenu() {
           </div>
 
         </div>
-      </CSSTransition>
+      </CSSTransition >
 
       <CSSTransition
         in={activeMenu === 'settings'}
@@ -171,6 +169,6 @@ function DropdownMenu() {
 
       </CSSTransition>
 
-    </div>
+    </div >
   );
 }
