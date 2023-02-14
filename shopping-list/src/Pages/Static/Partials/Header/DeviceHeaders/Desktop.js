@@ -23,10 +23,10 @@ export default function DesktopHeader() {
                     <div class="h-[100%] flex justify-between pr-[3vw]">
                         <Link class="align-middle h-[100%] block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer " to="/">EZ Shop</Link>
                         <div class="my-auto flex justify-around">
-                            <h1 class="m-auto text-[2.5rem] font-semibold">{user.displayName}</h1>
-                            <NavItem icon={<UserPhoto />}>
+
+                            <TopNav icon={<UserPhoto />} name={user.displayName}>
                                 <DropdownMenu></DropdownMenu>
-                            </NavItem>
+                            </TopNav>
                         </div>
                     </div>
                 </div>
@@ -53,11 +53,32 @@ export default function DesktopHeader() {
     }
 }
 
-function NavItem(props) {
+function TopNav(props) {
+    const [user] = useAuthState(auth);
     const [open, setOpen] = useState(false);
 
     return (
         <li className="nav-item">
+            <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
+                <div class="flex hover:bg-text_grey h-min ">
+                    {props.name}
+                    <div className='m-[2px] w-[70px] h-[70px] hover:brightness-[1.2] transition-[500ms]'>
+                        {props.icon}
+                    </div>
+                </div>
+            </Link>
+            {open && props.children}
+        </li>
+    );
+}
+
+function NavItem(props) {
+    const [user] = useAuthState(auth);
+    const [open, setOpen] = useState(false);
+
+    return (
+        <li className="nav-item">
+
             <Link to="#" className="icon-button icon-button-dimensions" onClick={() => setOpen(!open)}>
                 {props.icon}
             </Link>
