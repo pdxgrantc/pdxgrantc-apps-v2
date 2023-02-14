@@ -23,10 +23,9 @@ function Desktop() {
             <Helmet>
                 <title>Sign In</title>
             </Helmet>
-            <div class="m-auto mx-[7vw] py-[16vh] bg-black">
+            <div class="m-auto py-[16vh] bg-black">
                 <div>
-                    <h2 class="text-[3.25rem] text-center">You must be signed in</h2>
-                    <h2 class="text-[3.25rem] text-center">to Google to use this app</h2>
+                    <h2 class="mx-[7rem] text-[3.25rem] text-center">You must be signed in to Google to use this app</h2>
                 </div>
                 <div class="h-[9vh]"></div>
                 <div class="m-auto w-fit">

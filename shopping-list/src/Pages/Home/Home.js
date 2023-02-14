@@ -28,8 +28,7 @@ export default function Home() {
                 </div>
                 <div class="w-screen gap-[5vw] h-max basis-auto grow">
                     <div className='h-full w-full flex justify-around'>
-                        <SignedOut />
-                        {/*<Content />*/}
+                        <Content />
                     </div>
                 </div>
             </div>

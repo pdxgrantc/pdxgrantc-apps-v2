@@ -7,11 +7,13 @@ import Mobile from './DeviceHeaders/Mobile'
 export default function Header() {
   return (
     <>
-      <div class="w-full on_mobile:hidden">
-        <Desktop />
-      </div>
-      <div class="w-full fixed on_desktop:hidden">
-        <Mobile />
+      <div className='mb-[2.5rem]'>
+        <div class="w-full on_mobile:hidden">
+          <Desktop />
+        </div>
+        <div class="w-full fixed on_desktop:hidden">
+          <Mobile />
+        </div>
       </div>
     </>
   )

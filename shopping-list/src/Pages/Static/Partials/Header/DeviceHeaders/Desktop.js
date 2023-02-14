@@ -23,7 +23,6 @@ export default function DesktopHeader() {
                     <div class="h-[100%] flex justify-between pr-[3vw]">
                         <Link class="align-middle h-[100%] block w-fit bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer " to="/">EZ Shop</Link>
                         <div class="my-auto flex justify-around">
-
                             <TopNav icon={<UserPhoto />} name={user.displayName}>
                                 <DropdownMenu></DropdownMenu>
                             </TopNav>
@@ -34,21 +33,18 @@ export default function DesktopHeader() {
         )
     }
     else {
-
         return (
-            <>
-                <div class="bg-dark_grey w-[100%]">
-                    <div class="flex justify-between pr-[3vw]">
-                        <Link class="block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer py-0" to="/">EZ Shop</Link>
-                        <div
-                            onClick={signInWithGoogle}
-                            className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
-                            <h1 class="whitespace-nowrap m-auto">Sign In</h1>
-                            <PersonIcon className="w-[45px] h-[45px] m-auto"></PersonIcon>
-                        </div>
+            <div class="bg-dark_grey w-[100%]">
+                <div class="flex justify-between pr-[3vw]">
+                    <Link class="block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer py-0" to="/">EZ Shop</Link>
+                    <div
+                        onClick={signInWithGoogle}
+                        className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
+                        <h1 class="whitespace-nowrap m-auto">Sign In</h1>
+                        <PersonIcon className="w-[45px] h-[45px] m-auto"></PersonIcon>
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }
@@ -61,7 +57,7 @@ function TopNav(props) {
             <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
                 <div class="flex hover:bg-text_grey hover:bg-opacity-50 transition duration-[300ms] rounded-[4px] px-[1rem] h-min gap-[1vw]">
                     <p class="whitespace-nowrap my-auto font-semibold">{props.name}</p>
-                    <div className='my-[6px] w-[55px] h-[55px]'>
+                    <div className='my-[6px] w-[55px] align-middle'>
                         {props.icon}
                     </div>
                 </div>
@@ -93,8 +89,8 @@ function UserPhoto() {
     const [user] = useAuthState(auth);
 
     return (
-        <div>
-            <img className="rounded-[100%]" src={user.photoURL} alt={PersonIcon} />
+        <div className="m-auto">
+            <img className="rounded-[100%] h-[90%] w-[90%] m-auto align-middle" src={user.photoURL} alt={PersonIcon} />
         </div>
     )
 }
@@ -148,7 +144,6 @@ function DropdownMenu() {
                 timeout={500}
                 classNames="menu-primary"
                 unmountOnExit>
-
                 <div className="menu">
                     <TopLink></TopLink>
                     <DropdownItem
@@ -179,9 +174,7 @@ function DropdownMenu() {
                     </DropdownItem>
                     <DropdownItem leftIcon={<CogIcon />}>Settings</DropdownItem>
                 </div>
-
             </CSSTransition>
-
         </div>
     );
 }
