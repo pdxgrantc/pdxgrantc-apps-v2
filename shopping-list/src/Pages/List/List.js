@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {usec} from 'react'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
@@ -42,7 +42,6 @@ export default function List() {
                 </Helmet>
                 <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
                     <Header />
-                    <div class="h-[5vh] min-h-[25px]"></div>
                     <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
                         <div>
                             <h1 class="text-[4.5rem] text-center">This list does not exist.</h1>
@@ -60,7 +59,6 @@ export default function List() {
                 </Helmet>
                 <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
                     <Header />
-                    <div class="h-[5vh] min-h-[25px]"></div>
                     <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
                         <div>
                             <div>
@@ -68,7 +66,7 @@ export default function List() {
                                     <h1 class="text-[3.5rem] font-semibold">{listName}</h1>
                                 </div>
                                 <div>
-                                    <h2 class="text-[2.25rem]">{listDescription}</h2>
+                                    <h2 class="text-[1.75rem] opacity-[.9]">{listDescription}</h2>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +116,7 @@ function Items() {
 
     if (items.length === 0) {
         return (
-            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">No items in list</h3>
+            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">List is currently empty</h3>
         )
     }
     else {
@@ -173,25 +171,24 @@ function AddList() {
     const [listItemCost, setListItemCost] = useState('')
     const location = useLocation()
     const listWithoutSpaces = location.pathname.split('/')[2]
-    const listName = listWithoutSpaces.replace("_", " ")
 
     const addListItem = async () => {
         const docRef = doc(db, "lists", listWithoutSpaces, "items", listItemName)
         // check if input fields are empty
         if (listItemName === '') {
-            alert('Please fill in all fields')
+            alert('Please fill in the name field')
             return
         }
         // check if item already exists
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-            alert('Item already exists')
+            alert('An item already has that name')
             return
         }
         // add item
         await setDoc(docRef, {
             name: listItemName,
-            cost: parseInt(listItemCost)
+            cost: parseFloat(listItemCost)
         })
         // add price to list
         const listRef = doc(db, "lists", listWithoutSpaces)
@@ -211,7 +208,7 @@ function AddList() {
     return (
         <>
             <div class="flex justify-between gap-[30px]">
-                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">New Item</h3>
+                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Add an Item:</h3>
                 <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
                     type='text'
                     placeholder='Item Name'
@@ -220,6 +217,7 @@ function AddList() {
                 />
                 <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
                     type='number'
+                    step="0.01"
                     placeholder='Item Cost'
                     value={listItemCost}
                     onChange={(e) => setListItemCost(e.target.value)}

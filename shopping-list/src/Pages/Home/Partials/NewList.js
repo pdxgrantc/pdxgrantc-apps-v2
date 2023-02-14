@@ -15,7 +15,7 @@ export default function MyLists() {
     }
     // check if list has _ in it
     if (listTitle.includes("_")) {
-      alert('List title cannot contain _')
+      alert('List title cannot contain an underscore')
       return
     }
     // remove spaces from list title

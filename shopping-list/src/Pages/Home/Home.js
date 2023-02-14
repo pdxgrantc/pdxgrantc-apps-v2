@@ -23,11 +23,11 @@ export default function Home() {
                 <title>Home</title>
             </Helmet>
             <div class="bg-main_bg_color text-text_white h-[100vh] flex flex-col">
-                <div class="basis-auto grow-0">
+                <div class="">
                     <Header />
                 </div>
-                <div class="w-screen gap-[5vw] h-max basis-auto grow">
-                    <div className='h-full w-full flex justify-around'>
+                <div class="w-screen h-max basis-auto grow">
+                    <div className='h-full w-full flex justify-around gap-[2.5rem]'>
                         <Content />
                     </div>
                 </div>
@@ -124,7 +124,7 @@ function YourLists() {
     return (
         <div class="flex flex-col text-[1.25rem]">
             {lists.map((list) => (
-                <Link class="text-[1.75rem] leading-8" to={"/" + auth.currentUser.displayName + "/" + list.list_title_without_spaces}>{list.list_title}</Link>
+                <Link class="text-[1.75rem] leading-8" to={"/MyLists/" + list.list_title_without_spaces}>{list.list_title}</Link>
             ))}
         </div>
     )
