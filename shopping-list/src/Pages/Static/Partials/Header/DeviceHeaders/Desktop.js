@@ -10,6 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { ReactComponent as PersonIcon } from '../../../Images/PersonIcon.svg'
 import { ReactComponent as CogIcon } from '../../../Images/Cog.svg'
 import { ReactComponent as ChevronIcon } from '../../../Images/Chevron.svg'
+import { ReactComponent as ChevronLeft } from '../../../Images/ChevronLeft.svg'
 
 export default function DesktopHeader() {
     const [user] = useAuthState(auth);
@@ -123,7 +124,7 @@ function DropdownMenu() {
                 unmountOnExit>
 
                 <div className="menu">
-                    <DropdownItem goToMenu="main" leftIcon={<ChevronIcon />}>
+                    <DropdownItem goToMenu="main" leftIcon={<CogIcon />}>
                         <h2>Go back</h2>
                     </DropdownItem>
                 </div>
