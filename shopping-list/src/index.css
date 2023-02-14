@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-    --bg: #242526;
-    --bg-accent: #484a4d;
+    --bg: #272727;
+    --bg-accent: #141414;
     --text-color: #dadce1;
     --nav-size: 80px;
     --border: 0px solid #474a4d;
@@ -59,7 +59,7 @@
     top: 80px;
     font-size: 1.25rem;
     width: 250px;
-    transform: translateX(-34%);
+    transform: translateX(26%);
     background-color: var(--bg);
     border: var(--border);
     border-radius: var(--border-radius);
@@ -95,7 +95,7 @@
 }
 
 .menu-item:hover {
-    background-color: #525357;
+    
 }
 
 .icon-right {

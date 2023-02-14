@@ -44,7 +44,7 @@ export default function DesktopHeader() {
                             onClick={signInWithGoogle}
                             className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
                             <h1 class="whitespace-nowrap m-auto">Sign In</h1>
-                            <PersonIcon className="w-[54px] h-[54px] m-auto"></PersonIcon>
+                            <PersonIcon className="w-[45px] h-[45px] m-auto"></PersonIcon>
                         </div>
                     </div>
                 </div>
@@ -58,17 +58,17 @@ function TopNav(props) {
     const [open, setOpen] = useState(false);
 
     return (
-        <li className="nav-item">
+        <div>
             <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
-                <div class="flex hover:bg-text_grey h-min ">
-                    {props.name}
-                    <div className='m-[2px] w-[70px] h-[70px] hover:brightness-[1.2] transition-[500ms]'>
+                <div class="flex hover:bg-text_grey hover:bg-opacity-50 rounded-[4px] px-[1rem] h-min gap-[1vw]">
+                    <p class="whitespace-nowrap my-auto font-semibold">{props.name}</p>
+                    <div className='my-[6px] w-[55px] h-[55px] transition-[500ms]'>
                         {props.icon}
                     </div>
                 </div>
             </Link>
             {open && props.children}
-        </li>
+        </div>
     );
 }
 
@@ -110,7 +110,7 @@ function DropdownMenu() {
 
     function DropdownItem(props) {
         return (
-            <Link to="#" className="menu-item whitespace-nowrap" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+            <Link to="#" className="menu-item hover:bg-text_white hover:bg-opacity-50 font-semibold text-[1.25rem] whitespace-nowrap" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
                 <span className="icon-button">{props.leftIcon}</span>
                 {props.children}
                 <span className="icon-right">{props.rightIcon}</span>
