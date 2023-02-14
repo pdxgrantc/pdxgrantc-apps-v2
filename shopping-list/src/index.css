@@ -94,14 +94,9 @@
     filter: none;
 }
 
-.menu-item:hover {
-    
-}
-
 .icon-right {
     margin-left: auto;
 }
-
 
 .menu-primary-enter {
     position: absolute;
@@ -131,8 +126,6 @@
     transform: translateX(0%);
     transition: all var(--speed) ease;
 }
-
-.menu-secondary-exit {}
 
 .menu-secondary-exit-active {
     transform: translateX(110%);
