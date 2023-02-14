@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom';
 
 // Firebase
-import { auth, signInWithGoogle, db } from '../../firebase';
+import { auth, db } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { getDocs, collection, where, orderBy, limit, query } from "firebase/firestore";
 
@@ -27,7 +27,10 @@ export default function Home() {
                     <Header />
                 </div>
                 <div class="w-screen gap-[5vw] h-max basis-auto grow">
-                    {/*<Content />*/}
+                    <div className='h-full w-full flex justify-around'>
+                        <SignedOut />
+                        {/*<Content />*/}
+                    </div>
                 </div>
             </div>
         </>
@@ -38,14 +41,13 @@ function Content() {
     const [user] = useAuthState(auth);
     if (user) {
         return (
-            <>
-                <SignedIn />
-            </>
+            <SignedIn />
         )
     }
     else {
         return (
             <>
+                <div className='h-'></div>
                 <SignedOut />
             </>
         )
