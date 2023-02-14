@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Bars_Icon" data-name="Bars Icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #d6d6d6;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="31.01" y="66.08" width="297.98" height="52.59" rx="26.3" ry="26.3"/>
+  <rect class="cls-1" x="31.01" y="152.39" width="297.98" height="52.59" rx="26.3" ry="26.3"/>
+  <rect class="cls-1" x="31.01" y="238.7" width="297.98" height="55.22" rx="26.3" ry="26.3"/>
+</svg>

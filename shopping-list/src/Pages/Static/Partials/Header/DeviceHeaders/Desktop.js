@@ -119,7 +119,7 @@ function DropdownMenu() {
     }
 
     return (
-        <div className="dropdown">
+        <div className="dropdown translate-x-[26%] top-[80px] w-[250px]">
 
             <CSSTransition
                 in={activeMenu === 'main'}

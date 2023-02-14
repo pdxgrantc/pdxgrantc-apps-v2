@@ -12,6 +12,7 @@ import { ReactComponent as CogIcon } from '../../../Images/Cog.svg'
 import { ReactComponent as ChevronIcon } from '../../../Images/Chevron.svg'
 import { ReactComponent as ChevronLeft } from '../../../Images/ChevronLeft.svg'
 import { ReactComponent as Basket } from '../../../Images/Basket.svg'
+import { ReactComponent as Bars } from '../../../Images/Bars.svg'
 
 
 export default function MobileHeader() {
@@ -20,14 +21,14 @@ export default function MobileHeader() {
   if (user) {
     return (
       <>
-        <div class="bg-dark_grey bg-opacity-90 py-[.3rem]">
+        <div class="bg-dark_grey">
           <div class="flex justify-between px-[7vw]">
             <div class="self-center w-fit">
               <Link to="/" class="text-[2.25rem] font-bold">Ez Shop</Link>
             </div>
 
             <div class="h-[5%] w-auto my-auto">
-              <TopNav icon={<UserPhoto />}>
+              <TopNav icon={<Bars />}>
                 <DropdownMenu></DropdownMenu>
               </TopNav>
             </div>
@@ -41,12 +42,14 @@ export default function MobileHeader() {
 
     return (
       <>
-        <div class="bg-dark_grey bg-opacity-90 w-[100%]">
-          <div class="flex justify-between pr-[3vw]">
-            <Link class="block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer py-0" to="/">EZ Shop</Link>
+        <div class="bg-dark_grey">
+          <div class="flex justify-between px-[7vw]">
+            <div class="self-center w-fit">
+              <Link class="text-[2.25rem] font-bold h-[59px]" to="/">Ez Shop</Link>
+            </div>
             <div
               onClick={signInWithGoogle}
-              className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
+              className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit py-[0.1rem] my-[0.4rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
               <h1 class="whitespace-nowrap m-auto">Sign In</h1>
               <PersonIcon className="w-[45px] h-[45px] m-auto"></PersonIcon>
             </div>
@@ -62,10 +65,10 @@ function TopNav(props) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div>
+    <div className='my-[2px]'>
       <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
-        <div class="flex hover:bg-text_grey hover:bg-opacity-50 transition duration-[300ms] rounded-[4px] px-[1rem] h-min gap-[1vw]">
-          <div className='my-[6px] w-[55px] h-[55px]'>
+        <div class="flex transition duration-[300ms] rounded-[4px] px-[.4rem] py-[.0rem] h-min gap-[1vw]">
+          <div className='my-[0px] w-[55px] h-[55px]'>
             {props.icon}
           </div>
         </div>
@@ -122,7 +125,7 @@ function DropdownMenu() {
   }
 
   return (
-    <div className="dropdown">
+    <div className="dropdown translate-x-[-150px] top-[60px] w-fit">
 
       <CSSTransition
         in={activeMenu === 'main'}
