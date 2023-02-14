@@ -60,9 +60,9 @@ function TopNav(props) {
     return (
         <div>
             <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
-                <div class="flex hover:bg-text_grey hover:bg-opacity-50 rounded-[4px] px-[1rem] h-min gap-[1vw]">
+                <div class="flex hover:bg-text_grey hover:bg-opacity-50 transition duration-[300ms] rounded-[4px] px-[1rem] h-min gap-[1vw]">
                     <p class="whitespace-nowrap my-auto font-semibold">{props.name}</p>
-                    <div className='my-[6px] w-[55px] h-[55px] transition-[500ms]'>
+                    <div className='my-[6px] w-[55px] h-[55px]'>
                         {props.icon}
                     </div>
                 </div>
