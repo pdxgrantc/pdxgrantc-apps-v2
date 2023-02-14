@@ -145,7 +145,6 @@ function DropdownMenu() {
 
   return (
     <div className="dropdown translate-x-[-150px] top-[60px] w-fit">
-
       <CSSTransition
         in={activeMenu === 'main'}
         timeout={500}
