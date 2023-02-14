@@ -124,6 +124,25 @@ function DropdownMenu() {
     );
   }
 
+  function TopLink() {
+    if (window.location.pathname === "/") {
+      return (
+        <DropdownItem
+          leftIcon={<Basket />}>
+          <Link to="/MyLists">My Lists</Link>
+        </DropdownItem>
+      )
+    }
+    else {
+      return (
+        <DropdownItem
+          leftIcon={<Basket />}>
+          <Link to="/">Home</Link>
+        </DropdownItem>
+      )
+    }
+  }
+
   return (
     <div className="dropdown translate-x-[-150px] top-[60px] w-fit">
 
@@ -134,10 +153,7 @@ function DropdownMenu() {
         unmountOnExit>
 
         <div className="menu">
-          <DropdownItem
-            leftIcon={<Basket />}>
-            <Link to="/MyLists">My Lists</Link>
-          </DropdownItem>
+          <TopLink></TopLink>
           <DropdownItem
             leftIcon={<CogIcon />}
             rightIcon={<ChevronIcon />}
