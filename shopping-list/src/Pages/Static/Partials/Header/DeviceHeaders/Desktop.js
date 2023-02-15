@@ -108,29 +108,42 @@ function DropdownMenu() {
     */
 
     function DropdownItem(props) {
-        return (
-            <Link to="#" className="menu-item hover:bg-text_white hover:bg-opacity-50 font-semibold text-[1.25rem] whitespace-nowrap" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-                <span className="icon-button">{props.leftIcon}</span>
-                {props.children}
-                <span className="icon-right">{props.rightIcon}</span>
-            </Link>
-        );
+        if (props.route) {
+            return (
+                <Link to={props.route} className="menu-item hover:bg-text_white hover:bg-opacity-50 font-semibold text-[1.25rem] whitespace-nowrap" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+                    <span className="icon-button">{props.leftIcon}</span>
+                    {props.children}
+                    <span className="icon-right">{props.rightIcon}</span>
+                </Link>
+            );
+        }
+        else {
+            return (
+                <Link to="#" className="menu-item hover:bg-text_white hover:bg-opacity-50 font-semibold text-[1.25rem] whitespace-nowrap" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+                    <span className="icon-button">{props.leftIcon}</span>
+                    {props.children}
+                    <span className="icon-right">{props.rightIcon}</span>
+                </Link>
+            );
+        }
     }
 
     function TopLink() {
         if (window.location.pathname === "/") {
             return (
                 <DropdownItem
-                    leftIcon={<Basket />}>
-                    <Link to="/MyLists">My Lists</Link>
+                    leftIcon={<Basket />}
+                    route="/MyLists">
+                    My Lists
                 </DropdownItem>
             )
         }
         else {
             return (
                 <DropdownItem
-                    leftIcon={<Basket />}>
-                    <Link to="/">Home</Link>
+                    leftIcon={<Basket />}
+                    route="/">
+                    Home
                 </DropdownItem>
             )
         }
