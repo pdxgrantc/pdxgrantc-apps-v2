@@ -195,6 +195,7 @@ function AddList() {
         const listSnap = await getDoc(listRef)
         const listData = listSnap.data()
         const listPrice = listData.price
+        
         const newPrice = listPrice + listItemCost
         await setDoc(listRef, {
             price: newPrice

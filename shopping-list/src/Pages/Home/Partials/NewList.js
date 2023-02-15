@@ -43,7 +43,8 @@ export default function MyLists() {
           created_at: new Date(),
           last_edited_at: new Date(),
           shared_with: [],
-          cost: 0
+          cost: 0,
+          items: parseInt(0),
         });
         // reset form
         setListTitle('')
