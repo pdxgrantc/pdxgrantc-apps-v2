@@ -46,7 +46,6 @@ function Content() {
     else {
         return (
             <>
-                <div className='h-'></div>
                 <SignedOut />
             </>
         )

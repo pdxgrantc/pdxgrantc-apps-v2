@@ -1,4 +1,4 @@
-import React, {usec} from 'react'
+import React, { usec } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
@@ -195,7 +195,13 @@ function AddList() {
         const listSnap = await getDoc(listRef)
         const listData = listSnap.data()
         const listPrice = listData.price
-        const newPrice = listPrice + listItemCost
+        const newPrice = 0
+        if (listPrice === 0) {
+            newPrice = parseFloat(listItemCost)
+        }
+        else {
+            newPrice = listPrice + parseFloat(listItemCost)
+        }
         await setDoc(listRef, {
             price: newPrice
         })
