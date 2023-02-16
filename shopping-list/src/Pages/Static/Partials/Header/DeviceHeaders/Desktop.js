@@ -21,7 +21,7 @@ export default function DesktopHeader() {
             <>
                 <div class="bg-dark_grey w-[100%] h-[80px]">
                     <div class="h-[100%] flex justify-between pr-[3vw]">
-                        <Link class="align-middle h-[100%] block w-fit bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer " to="/">EZ Shop</Link>
+                        <Link class="align-middle h-[100%] w-[25vw] block bg-black pl-[4vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
                         <div class="my-auto flex justify-around">
                             <TopNav icon={<UserPhoto />} name={user.displayName}>
                                 <DropdownMenu></DropdownMenu>
@@ -34,9 +34,9 @@ export default function DesktopHeader() {
     }
     else {
         return (
-            <div class="bg-dark_grey w-[100%]">
-                <div class="flex justify-between pr-[3vw]">
-                    <Link class="block w-fit bg-black px-[7vw] text-[3.25rem] font-bold cursor-pointer py-0" to="/">EZ Shop</Link>
+            <div class="bg-dark_grey w-[100%] h-80px">
+                <div class="h-[100%] flex justify-between pr-[3vw]">
+                    <Link class="align-middle h-[100%] block w-[25vw] bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
                     <div
                         onClick={signInWithGoogle}
                         className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
