@@ -5,10 +5,12 @@ import { Helmet } from 'react-helmet'
 
 // firebase
 import { auth, db } from '../../firebase'
-import { doc, setDoc, collection, query, where, getDoc, getDocs } from 'firebase/firestore'
+import { doc, setDoc, collection, query, where, getDoc, getDocs, arrayUnion, updateDoc } from 'firebase/firestore'
 
 // components
 import Header from '../Static/Partials/Header/Header'
+import { ReactComponent as Pencil } from '../Static/Images/Pencil.svg'
+import { ReactComponent as Trash } from '../Static/Images/Trash.svg'
 
 // component that takes a list name as a parameter
 export default function List() {
@@ -20,6 +22,7 @@ export default function List() {
 
     const [listDescription, setListDescription] = useState('')
 
+    // grabs the list description from the database and sets state
     useEffect(() => {
         const getListDescription = async () => {
             const docRef = doc(db, "lists", listWithoutSpaces)
@@ -34,6 +37,25 @@ export default function List() {
         getListDescription()
     }, [])
 
+    // TODO delete list function make worky
+    const confirmDelete = async () => {
+        const response = window.confirm("Are you sure you want to delete this list?");
+
+        if (response) {
+            // delete items in list
+            const itemsRef = collection(db, "lists", listWithoutSpaces, "items")
+            const q = query(itemsRef, where("list", "==", listWithoutSpaces))
+            const querySnapshot = await getDocs(q)
+            querySnapshot.forEach((doc) => {
+                doc.ref.delete()
+            })
+            // delete list
+            const listRef = doc(db, "lists", listWithoutSpaces)
+            listRef.delete()
+        }
+    }
+
+    // when url is not a list in the database
     if (listDescription === 'List does not exist') {
         return (
             <>
@@ -62,8 +84,18 @@ export default function List() {
                     <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
                         <div>
                             <div>
-                                <div>
+                                <div className='flex justify-between'>
                                     <h1 class="text-[3.5rem] font-semibold">{listName}</h1>
+                                    <div className='flex gap-[1rem]'>
+                                        <div className='flex justify-end gap-[.3rem] text-[1.5rem] my-auto align-middle'>
+                                            <h3 className="align-middle h-fit my-auto">Edit</h3>
+                                            <Pencil className="w-[3rem] h-[3rem] brightness-75 my-auto p-[0.1rem] hover:brightness-200 hover:cursor-pointer" />
+                                        </div>
+                                        <div className='flex justify-end gap-[.3rem] text-[1.5rem] my-auto align-middle'>
+                                            <h3 className="align-middle h-fit my-auto">Delete</h3>
+                                            <Trash onClick={confirmDelete} className="w-[2.75rem] h-[2.75rem] brightness-75 my-auto p-[0.1rem] hover:brightness-200 hover:cursor-pointer" />
+                                        </div>
+                                    </div>
                                 </div>
                                 <div>
                                     <h2 class="text-[1.75rem] opacity-[.9]">{listDescription}</h2>
@@ -71,7 +103,7 @@ export default function List() {
                             </div>
                         </div>
                         <div class="h-[2.5vh] min-h-[15px]"></div>
-                        <AddList />
+                        <AddItemToList />
                         <div class="h-[2.5vh] min-h-[15px]"></div>
                         <Items />
                         <div></div>
@@ -166,45 +198,44 @@ function Items() {
     }
 }
 
-function AddList() {
+// create list item
+function AddItemToList() {
     const [listItemName, setListTitle] = useState('')
     const [listItemCost, setListItemCost] = useState('')
     const location = useLocation()
     const listWithoutSpaces = location.pathname.split('/')[2]
 
     const addListItem = async () => {
-        const docRef = doc(db, "lists", listWithoutSpaces, "items", listItemName)
         // check if input fields are empty
         if (listItemName === '') {
             alert('Please fill in the name field')
             return
         }
-        // check if item already exists
-        const docSnap = await getDoc(docRef)
-        if (docSnap.exists()) {
-            alert('An item already has that name')
-            return
-        }
-        // add item
-        await setDoc(docRef, {
-            name: listItemName,
-            cost: parseFloat(listItemCost)
-        })
-        // add price to list
+        
+        // get list object
         const listRef = doc(db, "lists", listWithoutSpaces)
-        const listSnap = await getDoc(listRef)
-        const listData = listSnap.data()
-        const listPrice = listData.price
-        const newPrice = 0
-        if (listPrice === 0) {
-            newPrice = parseFloat(listItemCost)
+        const listDoc = await getDoc(listRef)
+        // check if item name already exists in items array
+        for (let i = 0; i < listDoc.data().items.length; i++) {
+            if (listDoc.data().items[i].name === listItemName) {
+                alert('Item name already exists')
+                return
+            }
         }
-        else {
-            newPrice = listPrice + parseFloat(listItemCost)
-        }
-        await setDoc(listRef, {
-            price: newPrice
+
+        // add item to items array
+        await updateDoc(listRef, {
+            items: arrayUnion({
+                name: listItemName,
+                cost: listItemCost
+            })
         })
+
+        // add cost to total cost
+        await updateDoc(listRef, {
+            cost: listDoc.data().cost + parseFloat(listItemCost)
+        })
+
         // reset input fields
         setListTitle('')
         setListItemCost('')

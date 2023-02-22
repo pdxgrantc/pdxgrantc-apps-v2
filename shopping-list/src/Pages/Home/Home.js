@@ -45,9 +45,7 @@ function Content() {
     }
     else {
         return (
-            <>
-                <SignedOut />
-            </>
+            <SignedOut />
         )
     }
 }
@@ -123,7 +121,11 @@ function YourLists() {
     return (
         <div class="flex flex-col text-[1.25rem]">
             {lists.map((list) => (
-                <Link class="text-[1.75rem] leading-8" to={"/MyLists/" + list.list_title_without_spaces}>{list.list_title}</Link>
+                <Link
+                    class="text-[1.6rem] leading-8 cursor-pointer w-fit border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.25rem]"
+                    to={"/MyLists/" + list.list_title_without_spaces}>
+                    {list.list_title}
+                </Link>
             ))}
         </div>
     )
