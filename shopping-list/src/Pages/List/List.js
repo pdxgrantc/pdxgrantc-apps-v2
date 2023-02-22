@@ -1,16 +1,17 @@
-import React, { usec } from 'react'
+import React, { usec, useId } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
 
 // firebase
-import { auth, db } from '../../firebase'
-import { doc, setDoc, collection, query, where, getDoc, getDocs, arrayUnion, updateDoc } from 'firebase/firestore'
+import { db } from '../../firebase'
+import { doc, collection, query, where, getDoc, getDocs } from 'firebase/firestore'
 
 // components
 import Header from '../Static/Partials/Header/Header'
 import { ReactComponent as Pencil } from '../Static/Images/Pencil.svg'
 import { ReactComponent as Trash } from '../Static/Images/Trash.svg'
+import AddItemToList from './Partials/AddItemToList'
 
 // component that takes a list name as a parameter
 export default function List() {
@@ -120,39 +121,22 @@ function Items() {
     const location = useLocation()
     const listWithoutSpaces = location.pathname.split('/')[2]
     const listName = listWithoutSpaces.replace("_", " ")
-
-    // pull list from database
-    const [list , setList] = useState([])
+    
+    const [list, setList] = useState([])
     useEffect(() => {
         const getList = async () => {
-            const docRef = doc(db, "lists", "Test")
-            const docSnap = await getDoc(docRef)
+            const listRef = doc(db, "lists", listWithoutSpaces)
+            const docSnap = await getDoc(listRef)
             if (docSnap.exists()) {
                 setList(docSnap.data())
-            }
-            else {
-                setList('List does not exist')
             }
         }
         getList()
     }, [])
-
-    // print list to console
+    
     console.log(list)
 
-    // TODO make this work
-    const [items, setItems] = useState([])
-    useEffect(() => {
-        const getItems = async () => {
-            const itemsRef = collection(db, "lists", listWithoutSpaces, "items")
-            const q = query(itemsRef, where("list", "==", listWithoutSpaces))
-            const querySnapshot = await getDocs(q)
-            querySnapshot.forEach((doc) => {
-                setItems(doc.data())
-            })
-        }
-        getItems()
-    }, [])
+    
     
 
     return (
@@ -199,76 +183,4 @@ function Items() {
         </div>
     )
 
-}
-
-// create list item
-function AddItemToList() {
-    const [listItemName, setListTitle] = useState('')
-    const [listItemCost, setListItemCost] = useState('')
-    const location = useLocation()
-    const listWithoutSpaces = location.pathname.split('/')[2]
-
-    const addListItem = async () => {
-        // check if input fields are empty
-        if (listItemName === '') {
-            alert('Please fill in the name field')
-            return
-        }
-
-        // get list object
-        const listRef = doc(db, "lists", listWithoutSpaces)
-        const listDoc = await getDoc(listRef)
-        // check if item name already exists in items array
-        for (let i = 0; i < listDoc.data().items.length; i++) {
-            if (listDoc.data().items[i].name === listItemName) {
-                alert('Item name already exists')
-                return
-            }
-        }
-
-        // add item to items array
-        await updateDoc(listRef, {
-            items: arrayUnion({
-                name: listItemName,
-                cost: listItemCost
-            })
-        })
-
-        // add cost to total cost
-        await updateDoc(listRef, {
-            cost: listDoc.data().cost + parseFloat(listItemCost)
-        })
-
-       // update number of items
-        await updateDoc(listRef, {
-            numItems: listDoc.data().numItems + 1
-        })
-
-        // reset input fields
-        setListTitle('')
-        setListItemCost('')
-    }
-
-
-    return (
-        <>
-            <div class="flex justify-between gap-[30px]">
-                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Add an Item:</h3>
-                <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
-                    type='text'
-                    placeholder='Item Name'
-                    value={listItemName}
-                    onChange={(e) => setListTitle(e.target.value)}
-                />
-                <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
-                    type='number'
-                    step="0.01"
-                    placeholder='Item Cost'
-                    value={listItemCost}
-                    onChange={(e) => setListItemCost(e.target.value)}
-                />
-                <button onClick={addListItem} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Add</button>
-            </div>
-        </>
-    )
 }
