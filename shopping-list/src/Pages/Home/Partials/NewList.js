@@ -46,6 +46,7 @@ export default function MyLists() {
           users: [auth.currentUser.uid],
           items: [],
           cost: 0,
+          numItems: 0,
         });
         // reset form
         setListTitle('')

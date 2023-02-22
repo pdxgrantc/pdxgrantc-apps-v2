@@ -116,86 +116,89 @@ export default function List() {
 
 
 function Items() {
-    const [items, setItems] = useState([])
+    // reference to the list name
     const location = useLocation()
     const listWithoutSpaces = location.pathname.split('/')[2]
     const listName = listWithoutSpaces.replace("_", " ")
 
-    // total cost
-    const [total, setTot] = useState(0)
+    // pull list from database
+    const [list , setList] = useState([])
+    useEffect(() => {
+        const getList = async () => {
+            const docRef = doc(db, "lists", "Test")
+            const docSnap = await getDoc(docRef)
+            if (docSnap.exists()) {
+                setList(docSnap.data())
+            }
+            else {
+                setList('List does not exist')
+            }
+        }
+        getList()
+    }, [])
 
+    // print list to console
+    console.log(list)
+
+    // TODO make this work
+    const [items, setItems] = useState([])
     useEffect(() => {
         const getItems = async () => {
-            const q = query(collection(db, "lists", listWithoutSpaces, "items"))
+            const itemsRef = collection(db, "lists", listWithoutSpaces, "items")
+            const q = query(itemsRef, where("list", "==", listWithoutSpaces))
             const querySnapshot = await getDocs(q)
-            const items = []
             querySnapshot.forEach((doc) => {
-                items.push(doc.data())
+                setItems(doc.data())
             })
-            setItems(items)
         }
         getItems()
     }, [])
+    
 
-    useEffect(() => {
-        let total = 0
-        items.forEach((item) => {
-            total += item.cost
-        })
-        setTot(total)
-    }, [items])
-
-
-    if (items.length === 0) {
-        return (
-            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">List is currently empty</h3>
-        )
-    }
-    else {
-        return (
-            <div class="flex flex-col gap-[30px]">
-                <div class="grid grid-cols-2">
-                    <div>
-                        <div class="grid grid-cols-2">
-                            <div>
-                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Name</h3>
-                            </div>
-                            <div>
-                                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Cost</h3>
-                            </div>
-                        </div>
-                        <div class="pt-2">
-                            {items.map((item) => (
-                                <div class="grid grid-cols-2">
-                                    <div>
-                                        <h4 class="text-[1.75rem] whitespace-nowrap leading-10">{item.name}</h4>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-[1.75rem] whitespace-nowrap leading-10">{item.cost}</h4>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Users</h3>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2">
+    return (
+        <div class="flex flex-col gap-[30px]">
+            <div class="grid grid-cols-2">
+                <div>
                     <div class="grid grid-cols-2">
                         <div>
-                            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Total Cost</h3>
+                            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Name</h3>
                         </div>
                         <div>
-                            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">
-                                {total}
-                            </h3>
+                            <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Item Cost</h3>
                         </div>
+                    </div>
+                    <div class="pt-2">
+                        {items.map((item) => (
+                            <div class="grid grid-cols-2">
+                                <div>
+                                    <h4 class="text-[1.75rem] whitespace-nowrap leading-10">{}</h4>
+                                </div>
+                                <div>
+                                    <h4 class="text-[1.75rem] whitespace-nowrap leading-10">{}</h4>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Users</h3>
+                </div>
+            </div>
+            <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2">
+                    <div>
+                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Total Cost</h3>
+                    </div>
+                    <div>
+                        <h3 class="text-[2.25rem] whitespace-nowrap leading-10">
+                            {}
+                        </h3>
                     </div>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+
 }
 
 // create list item
@@ -211,7 +214,7 @@ function AddItemToList() {
             alert('Please fill in the name field')
             return
         }
-        
+
         // get list object
         const listRef = doc(db, "lists", listWithoutSpaces)
         const listDoc = await getDoc(listRef)
@@ -234,6 +237,11 @@ function AddItemToList() {
         // add cost to total cost
         await updateDoc(listRef, {
             cost: listDoc.data().cost + parseFloat(listItemCost)
+        })
+
+       // update number of items
+        await updateDoc(listRef, {
+            numItems: listDoc.data().numItems + 1
         })
 
         // reset input fields
