@@ -1,4 +1,4 @@
-import React, { usec, useId } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
@@ -36,7 +36,7 @@ export default function List() {
             }
         }
         getListDescription()
-    }, [])
+    }, [listWithoutSpaces])
 
     // TODO delete list function make worky
     const confirmDelete = async () => {
@@ -115,10 +115,11 @@ export default function List() {
     }
 }
 
-function getList() {
+function Items() {
     const location = useLocation()
     const listWithoutSpaces = location.pathname.split('/')[2]
-    const [list, setList] = useState('')
+
+    const [list, setList] = useState([])
 
     useEffect(() => {
         const getList = async () => {
@@ -128,19 +129,15 @@ function getList() {
                 setList(docSnap.data())
             }
             else {
-                setList('List does not exist')
+                setList([])
             }
         }
-        getList()
-    }, [])
+        getList(list)
+    }, [list, listWithoutSpaces])
 
-    return list
-}
+    const items = list.items
 
-
-function Items() {
-    const list = getList()
-
+    console.log(items)
 
 
     return (
@@ -156,17 +153,18 @@ function Items() {
                         </div>
                     </div>
                     <div className="pt-2">
-
-                        {items.map((item) => (
-                            <div className="grid grid-cols-2">
-                                <div>
-                                    <h4 className="text-[1.75rem] whitespace-nowrap leading-10">{item.name}</h4>
+                        {items.map((item) => {
+                            return (
+                                <div className="grid grid-cols-2">
+                                    <div>
+                                        <h3 className="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="text-[1.75rem] whitespace-nowrap leading-10">{item.cost}</h4>
-                                </div>
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
                 </div>
                 <div>
@@ -180,7 +178,7 @@ function Items() {
                     </div>
                     <div>
                         <h3 className="text-[2.25rem] whitespace-nowrap leading-10">
-                            {}
+                            { }
                         </h3>
                     </div>
                 </div>
