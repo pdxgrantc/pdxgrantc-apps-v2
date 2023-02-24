@@ -79,6 +79,8 @@ function SignedIn() {
     getLists()
   }, [])
 
+  console.log(lists)
+
   return (
     <>
       <Helmet>
