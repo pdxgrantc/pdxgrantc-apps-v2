@@ -153,18 +153,7 @@ function Items() {
                         </div>
                     </div>
                     <div className="pt-2">
-                        {items.map((item) => {
-                            return (
-                                <div className="grid grid-cols-2">
-                                    <div>
-                                        <h3 className="text-[2.25rem] whitespace-nowrap leading-10">{item.name}</h3>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-[2.25rem] whitespace-nowrap leading-10">{item.cost}</h3>
-                                    </div>
-                                </div>
-                            )
-                        })}
+                        
                     </div>
                 </div>
                 <div>
