@@ -10,6 +10,7 @@ import { getDocs, collection } from 'firebase/firestore'
 // components
 import Header from "../Static/Partials/Header/Header"
 import SignedOut from "../Static/Partials/SignedOut"
+import SingleList from './Partials/SingleList'
 
 export default function MyLists() {
   const [user] = useAuthState(auth)
@@ -18,9 +19,10 @@ export default function MyLists() {
     <>
       <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
         <Header />
-        <div class="h-[5vh]"></div>
-        <div class="w-full h-fit bg-black py-[3vh] px-[5vw]">
-          {user ? <SignedIn /> : <SignedOut />}
+        <div class="w-full h-fit">
+          <div className='mx-[5vw] m-auto'>
+            {user ? <SignedIn /> : <SignedOut />}
+          </div>
         </div>
       </div>
     </>
@@ -34,8 +36,14 @@ function SignedIn() {
       <Helmet>
         <title>My Lists</title>
       </Helmet>
-
-      <h1>My Lists</h1>
+      <div className="w-full h-fit">
+        <div className='bg-black py-[3vh] px-[5vw]'>
+          <SingleList />
+          <SingleList />
+          <SingleList />
+          <SingleList />
+        </div>
+      </div>
     </>
   )
 }
