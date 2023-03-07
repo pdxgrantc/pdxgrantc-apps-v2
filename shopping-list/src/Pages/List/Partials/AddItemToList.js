@@ -66,28 +66,28 @@ export default function AddItemToList() {
 
     return (
         <>
-            <div class="flex justify-between gap-[30px]">
-                <h3 class="text-[2.25rem] whitespace-nowrap leading-10">Add an Item:</h3>
-                <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+            <div className="flex justify-between gap-[30px]">
+                <h3 className="text-[2.25rem] whitespace-nowrap leading-10">Add an Item:</h3>
+                <input className="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
                     type='text'
                     placeholder='Item Name'
                     value={listItemName}
                     onChange={(e) => setListTitle(e.target.value)}
                 />
-                <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+                <input className="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
                     type='number'
                     step="0.01"
                     placeholder='Item Cost'
                     value={listItemCost}
                     onChange={(e) => setListItemCost(e.target.value)}
                 />
-                <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+                <input className="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
                     type='text'
                     placeholder='Quantity'
                     value={listItemQuantity}
                     onChange={(e) => setListItemQuantity(e.target.value)}
                 />
-                <button onClick={addListItem} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Add</button>
+                <button onClick={addListItem} className="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Add</button>
             </div>
         </>
     )

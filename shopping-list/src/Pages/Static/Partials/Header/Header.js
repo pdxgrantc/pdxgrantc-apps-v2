@@ -8,10 +8,10 @@ export default function Header() {
   return (
     <>
       <div className='mb-[2.5rem]'>
-        <div class="w-full on_mobile:hidden">
+        <div className="w-full on_mobile:hidden">
           <Desktop />
         </div>
-        <div class="w-full fixed on_desktop:hidden">
+        <div className="w-full fixed on_desktop:hidden">
           <Mobile />
         </div>
       </div>

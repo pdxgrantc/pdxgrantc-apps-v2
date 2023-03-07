@@ -7,6 +7,6 @@
       }
     </style>
   </defs>
-  <rect class="cls-1" x="72.82" y="186.37" width="194.35" height="73.04" rx="36.52" ry="36.52" transform="translate(132.6 500.7) rotate(-135)"/>
-  <rect class="cls-1" x="72.82" y="100.59" width="194.35" height="73.04" rx="36.52" ry="36.52" transform="translate(-47.16 160.37) rotate(-45)"/>
+  <rect className="cls-1" x="72.82" y="186.37" width="194.35" height="73.04" rx="36.52" ry="36.52" transform="translate(132.6 500.7) rotate(-135)"/>
+  <rect className="cls-1" x="72.82" y="100.59" width="194.35" height="73.04" rx="36.52" ry="36.52" transform="translate(-47.16 160.37) rotate(-45)"/>
 </svg>

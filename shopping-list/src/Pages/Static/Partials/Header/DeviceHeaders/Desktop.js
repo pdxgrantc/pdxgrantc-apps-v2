@@ -19,10 +19,10 @@ export default function DesktopHeader() {
     if (user) {
         return (
             <>
-                <div class="bg-dark_grey w-[100%] h-[80px]">
-                    <div class="h-[100%] flex justify-between pr-[3vw]">
-                        <Link class="align-middle h-[100%] w-[25vw] block bg-black pl-[4vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
-                        <div class="my-auto flex justify-around">
+                <div className="bg-dark_grey w-[100%] h-[80px]">
+                    <div className="h-[100%] flex justify-between pr-[3vw]">
+                        <Link className="align-middle h-[100%] w-[25vw] block bg-black pl-[4vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
+                        <div className="my-auto flex justify-around">
                             <TopNav icon={<UserPhoto />} name={user.displayName}>
                                 <DropdownMenu></DropdownMenu>
                             </TopNav>
@@ -34,13 +34,13 @@ export default function DesktopHeader() {
     }
     else {
         return (
-            <div class="bg-dark_grey w-[100%] h-80px">
-                <div class="h-[100%] flex justify-between pr-[3vw]">
-                    <Link class="align-middle h-[100%] block w-[25vw] bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
+            <div className="bg-dark_grey w-[100%] h-80px">
+                <div className="h-[100%] flex justify-between pr-[3vw]">
+                    <Link className="align-middle h-[100%] block w-[25vw] bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
                     <div
                         onClick={signInWithGoogle}
                         className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
-                        <h1 class="whitespace-nowrap m-auto">Sign In</h1>
+                        <h1 className="whitespace-nowrap m-auto">Sign In</h1>
                         <PersonIcon className="w-[45px] h-[45px] m-auto"></PersonIcon>
                     </div>
                 </div>
@@ -55,8 +55,8 @@ function TopNav(props) {
     return (
         <div>
             <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
-                <div class="flex hover:bg-text_grey hover:bg-opacity-50 transition duration-[300ms] rounded-[4px] px-[1rem] h-min gap-[1vw]">
-                    <p class="whitespace-nowrap my-auto font-semibold">{props.name}</p>
+                <div className="flex hover:bg-text_grey hover:bg-opacity-50 transition duration-[300ms] rounded-[4px] px-[1rem] h-min gap-[1vw]">
+                    <p className="whitespace-nowrap my-auto font-semibold">{props.name}</p>
                     <div className='my-[6px] w-[55px] align-middle'>
                         {props.icon}
                     </div>

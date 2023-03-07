@@ -80,9 +80,9 @@ export default function List() {
                 <Helmet>
                     <title>{listName}</title>
                 </Helmet>
-                <div class="m-auto bg-main_bg_color text-text_white min-h-screen">
+                <div className="m-auto bg-main_bg_color text-text_white min-h-screen">
                     <Header />
-                    <div class="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
+                    <div className="w-[88%] m-auto bg-black px-[3%] py-[3vh]">
                         <div>
                             <div>
                                 <div className='flex justify-between'>

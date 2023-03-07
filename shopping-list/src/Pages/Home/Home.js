@@ -22,11 +22,11 @@ export default function Home() {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <div class="bg-main_bg_color text-text_white h-[100vh] flex flex-col">
-                <div class="">
+            <div className="bg-main_bg_color text-text_white h-[100vh] flex flex-col">
+                <div className="">
                     <Header />
                 </div>
-                <div class="w-screen h-max basis-auto grow">
+                <div className="w-screen h-max basis-auto grow">
                     <div className='h-full w-full flex justify-around gap-[2.5rem]'>
                         <Content />
                     </div>
@@ -53,10 +53,10 @@ function Content() {
 function SignedIn() {
     return (
         <>
-            <div class="w-[35vw] min-w-fit h-full">
+            <div className="w-[35vw] min-w-fit h-full">
                 <LeftBar />
             </div>
-            <div class="w-full bg-black">
+            <div className="w-full bg-black">
                 <NewList />
             </div>
         </>
@@ -65,15 +65,15 @@ function SignedIn() {
 
 function LeftBar() {
     return (
-        <div class="bg-black h-full flex flex-col">
-            <div class="px-[1.5vw] py-[3vh]">
-                <h3 class="text-[2.25rem] font-light">Welcome</h3>
-                <h2 class="text-[2.75rem] font-semibold leading-10 pb-[2vh] whitespace-nowrap">{auth.currentUser.displayName}</h2>
-                <div class="h-[1vh]"></div>
-                <div class="min-h-[125px]">
+        <div className="bg-black h-full flex flex-col">
+            <div className="px-[1.5vw] py-[3vh]">
+                <h3 className="text-[2.25rem] font-light">Welcome</h3>
+                <h2 className="text-[2.75rem] font-semibold leading-10 pb-[2vh] whitespace-nowrap">{auth.currentUser.displayName}</h2>
+                <div className="h-[1vh]"></div>
+                <div className="min-h-[125px]">
                     <MyLists />
                 </div>
-                <div class="h-[3vh]"></div>
+                <div className="h-[3vh]"></div>
                 <Friends />
             </div>
         </div>
@@ -83,8 +83,8 @@ function LeftBar() {
 function MyLists() {
     return (
         <div>
-            <h3 class="text-[2.25rem] font-semibold">Your Lists</h3>
-            <div class="text-[1.5rem]">
+            <h3 className="text-[2.25rem] font-semibold">Your Lists</h3>
+            <div className="text-[1.5rem]">
                 <YourLists />
             </div>
         </div>
@@ -109,7 +109,7 @@ function YourLists() {
 
     if (lists.length === 0) {
         return (
-            <div class="text-[1.75rem] leading-8">You have no lists</div>
+            <div className="text-[1.75rem] leading-8">You have no lists</div>
         )
     }
 
@@ -119,10 +119,10 @@ function YourLists() {
     })
 
     return (
-        <div class="flex flex-col text-[1.25rem]">
+        <div className="flex flex-col text-[1.25rem]">
             {lists.map((list) => (
                 <Link
-                    class="text-[1.6rem] leading-8 cursor-pointer w-fit border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.25rem]"
+                    className="text-[1.6rem] leading-8 cursor-pointer w-fit border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.25rem]"
                     to={"/MyLists/" + list.list_title_without_spaces}>
                     {list.list_title}
                 </Link>
@@ -143,11 +143,15 @@ function changeToggle() {
 function Friends() {
     return (
         <div>
-            <h3 class="text-[1.75rem]">Your Friends</h3>
-            <div class="text-[1.5rem]">
+            <h3 className="text-[1.75rem]">Your Friends</h3>
+            <div className="text-[1.5rem]">
                 <YourFriends />
-                <div class="h-[.75vh]"></div>
-                <button onclick={changeToggle} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Find Friends</button>
+                <div className="h-[.75vh]"></div>
+                <button
+                    onClick={changeToggle}
+                    className="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">
+                    Find Friends
+                </button>
             </div>
         </div>
     )
@@ -157,12 +161,12 @@ function YourFriends() {
     const [friends, setFriends] = React.useState([])
     if (friends.length === 0) {
         return (
-            <div class="text-[1.75rem] leading-8">You have no friends</div>
+            <div className="text-[1.75rem] leading-8">You have no friends</div>
         )
     }
     else {
         return (
-            <div class="flex flex-col text-[1.25rem]">
+            <div className="flex flex-col text-[1.25rem]">
                 {friends.map((friend) => (
                     <p>Test</p>
                 ))}

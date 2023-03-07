@@ -21,13 +21,13 @@ export default function MobileHeader() {
   if (user) {
     return (
       <>
-        <div class="bg-dark_grey">
-          <div class="flex justify-between px-[7vw]">
-            <div class="self-center w-fit">
-              <Link to="/" class="text-[2.25rem] font-bold">Ez Shop</Link>
+        <div className="bg-dark_grey">
+          <div className="flex justify-between px-[7vw]">
+            <div className="self-center w-fit">
+              <Link to="/" className="text-[2.25rem] font-bold">Ez Shop</Link>
             </div>
 
-            <div class="h-[5%] w-auto my-auto">
+            <div className="h-[5%] w-auto my-auto">
               <TopNav icon={<Bars />}>
                 <DropdownMenu></DropdownMenu>
               </TopNav>
@@ -42,15 +42,15 @@ export default function MobileHeader() {
 
     return (
       <>
-        <div class="bg-dark_grey">
-          <div class="flex justify-between px-[7vw]">
-            <div class="self-center w-fit">
-              <Link class="text-[2.25rem] font-bold h-[59px]" to="/">Ez Shop</Link>
+        <div className="bg-dark_grey">
+          <div className="flex justify-between px-[7vw]">
+            <div className="self-center w-fit">
+              <Link className="text-[2.25rem] font-bold h-[59px]" to="/">Ez Shop</Link>
             </div>
             <div
               onClick={signInWithGoogle}
               className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit py-[0.1rem] my-[0.4rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
-              <h1 class="whitespace-nowrap m-auto">Sign In</h1>
+              <h1 className="whitespace-nowrap m-auto">Sign In</h1>
               <PersonIcon className="w-[45px] h-[45px] m-auto"></PersonIcon>
             </div>
           </div>
@@ -66,7 +66,7 @@ function TopNav(props) {
   return (
     <div className='my-[2px]'>
       <Link to="#" className="text-[2.25rem] w-fit" onClick={() => setOpen(!open)}>
-        <div class="flex transition duration-[300ms] rounded-[4px] px-[.4rem] py-[.0rem] h-min gap-[1vw]">
+        <div className="flex transition duration-[300ms] rounded-[4px] px-[.4rem] py-[.0rem] h-min gap-[1vw]">
           <div className='my-[0px] w-[55px] h-[55px]'>
             {props.icon}
           </div>

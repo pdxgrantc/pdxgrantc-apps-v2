@@ -61,31 +61,31 @@ export default function MyLists() {
   }
 
   return (
-    <div class="px-[2.5vw] py-[3vh]">
-      <h3 class="text-[3rem] font-semibold">Create New List</h3>
-      <div class="h-[1vh]"></div>
-      <div class="flex flex-col">
+    <div className="px-[2.5vw] py-[3vh]">
+      <h3 className="text-[3rem] font-semibold">Create New List</h3>
+      <div className="h-[1vh]"></div>
+      <div className="flex flex-col">
         <div>
-          <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+          <input className="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
             type='text'
             placeholder='List Title'
             value={listTitle}
             onChange={(e) => setListTitle(e.target.value)}
           />
-          <div class="h-[2vh]"></div>
-          <input class="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
+          <div className="h-[2vh]"></div>
+          <input className="text-black w-[50vw] h-[5vh] text-[1.5rem] border-[1.5px] border-black focus:outline-none px-2"
             type='text'
             placeholder='List Description'
             value={listDescription}
             onChange={(e) => setListDescription(e.target.value)}
           />
         </div>
-        <div class="h-[2.5vh]"></div>
-        <h4 class="text-[2.5rem] font-semibold">Share with</h4>
-        <div class="h-[1vh]"></div>
-        <div class="flex on_desktop:gap-[1.25vw] on_mobile:gap-[2.5vh] on_mobile:flex-col">
-          <button onClick={submitToDB} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Submit</button>
-          <button onClick={reset} class="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Reset</button>
+        <div className="h-[2.5vh]"></div>
+        <h4 className="text-[2.5rem] font-semibold">Share with</h4>
+        <div className="h-[1vh]"></div>
+        <div className="flex on_desktop:gap-[1.25vw] on_mobile:gap-[2.5vh] on_mobile:flex-col">
+          <button onClick={submitToDB} className="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Submit</button>
+          <button onClick={reset} className="cursor-pointer w-fit text-2xl border-b-[1.5px] on_desktop:hover:bg-button_accent_color on_desktop:hover:ease-[cubic-bezier(0.4, 0, 1, 1)] on_desktop:duration-[350ms] on_desktop:hover:px-[1.25vw] py-[.5vh]">Reset</button>
         </div>
       </div>
     </div>

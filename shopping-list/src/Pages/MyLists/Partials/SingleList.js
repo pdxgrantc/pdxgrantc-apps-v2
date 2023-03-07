@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function SingleList() {
+export default function SingleList({list}) {
     return (
-        <div className='flex justify-between p-5 border-transparent border-[3px] rounded-[4px] hover:border-white'>
+        <Link to='/MyLists'>
+        <div className='flex justify-between p-5 border-white border-opacity-25 border-[3px] hover:border-opacity-100 rounded-[4px] transition-all duration-[200ms]'>
             <div>
-                <h2 className='text-[2.25rem]'>List Name</h2>
+                <h2 className='text-[2.25rem]'>{list.list_title}</h2>
                 <h3 className='text-[2rem]'>List Description</h3>
             </div>
             <div>
@@ -12,5 +14,6 @@ export default function SingleList() {
                 <h3 className='text-[2rem]'>Number of Items</h3>
             </div>
         </div>
+        </Link>
     )
 }
