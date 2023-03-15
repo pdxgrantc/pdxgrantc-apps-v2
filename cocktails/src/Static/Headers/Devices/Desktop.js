@@ -8,7 +8,8 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 
 // static
 import { ReactComponent as PersonIcon } from '../../SVG/PersonIcon.svg'
-import { ReactComponent as Martini } from '../../SVG/Martini.svg'
+import { ReactComponent as MartiniLight } from '../../SVG/MartiniLight.svg'
+import { ReactComponent as MartiniDark } from '../../SVG/MartiniDark.svg'
 
 export default function DesktopHeader() {
     const [user] = useAuthState(auth);
@@ -18,7 +19,12 @@ export default function DesktopHeader() {
             <>
                 <div className="bg-dark_grey w-[100%] h-[80px]">
                     <div className="h-[100%] flex justify-between pr-[3vw]">
-                        <Link className="align-middle h-[100%] w-[25vw] block bg-black pl-[4vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
+                        <Link to="/">
+                            <div className='flex gap-4 h-[100%] w-[25vw] bg-black pl-[2vw]'>
+                                <MartiniLight className='h-20 my-auto'></MartiniLight>
+                                <h1 className="align-middle text-[3.25rem] font-bold cursor-pointer" to="/">Calculator</h1>
+                            </div>
+                        </Link>
                         <div className="my-auto flex justify-around">
                             <TopNav icon={<UserPhoto />} name={user.displayName}>
                                 <DropdownMenu></DropdownMenu>
@@ -33,7 +39,12 @@ export default function DesktopHeader() {
         return (
             <div className="bg-dark_grey w-[100%] h-80px">
                 <div className="h-[100%] flex justify-between pr-[3vw]">
-                    <Link className="align-middle h-[100%] block w-[25vw] bg-black pl-[4vw] pr-[6vw] text-[3.25rem] font-bold cursor-pointer" to="/">EZ Shop</Link>
+                    <Link to="/">
+                        <div className='flex gap-4 h-[100%] w-[25vw] bg-black pl-[2vw]'>
+                            <MartiniLight className='h-20 my-auto'></MartiniLight>
+                            <h1 className="align-middle text-[3.25rem] font-bold cursor-pointer" to="/">Calculator</h1>
+                        </div>
+                    </Link>
                     <div
                         onClick={signInWithGoogle}
                         className="flex font-semibold text-[1.75rem] hover:bg-text_grey h-fit my-auto py-[0.1rem] px-[.5rem] rounded-[4px] hover:bg-opacity-50 cursor-pointer">
@@ -64,24 +75,6 @@ function TopNav(props) {
     );
 }
 
-/*
-function NavItem(props) {
-    const [user] = useAuthState(auth);
-    const [open, setOpen] = useState(false);
-
-    return (
-        <li className="nav-item">
-
-            <Link to="#" className="icon-button icon-button-dimensions" onClick={() => setOpen(!open)}>
-                {props.icon}
-            </Link>
-
-            {open && props.children}
-        </li>
-    );
-}
-*/
-
 function UserPhoto() {
     const [user] = useAuthState(auth);
 
@@ -94,15 +87,6 @@ function UserPhoto() {
 
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
-
-    /*
-    const [menuHeight, setMenuHeight] = useState(null);
-
-    function calcHeight(el) {
-        const height = el.offsetHeight;
-        setMenuHeight(height);
-    }
-    */
 
     function DropdownItem(props) {
         if (props.route) {
@@ -129,8 +113,8 @@ function DropdownMenu() {
         if (window.location.pathname === "/") {
             return (
                 <DropdownItem
-                    leftIcon={<Martini />}
-                    route="/MyLists">
+                    leftIcon={<MartiniDark />}
+                    route="/Ingredients">
                     Ingredients
                 </DropdownItem>
             )
@@ -138,7 +122,7 @@ function DropdownMenu() {
         else {
             return (
                 <DropdownItem
-                    leftIcon={<Martini />}
+                    leftIcon={<MartiniDark />}
                     route="/">
                     Home
                 </DropdownItem>

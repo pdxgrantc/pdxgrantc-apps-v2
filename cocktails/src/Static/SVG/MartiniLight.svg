@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Martini_LIght" data-name="Martini LIght" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #d6d6d6;
+      }
+    </style>
+  </defs>
+  <g id="Glass_With_Tothpick" data-name="Glass With Tothpick">
+    <g id="Glass">
+      <path class="cls-1" d="m280.95,91.54c0,3.18-1.21,6.35-3.63,8.78l-97.32,97.32-97.31-97.32c-2.42-2.43-3.63-5.6-3.63-8.78s1.21-6.35,3.63-8.78c2.42-2.42,5.6-3.63,8.78-3.63h177.09c3.18,0,6.35,1.21,8.78,3.63,2.43,2.42,3.63,5.6,3.63,8.78Z"/>
+      <rect class="cls-1" x="95.92" y="196.32" width="168.17" height="23.73" transform="translate(388.18 28.18) rotate(90)"/>
+      <rect class="cls-1" x="110.78" y="285.2" width="138.43" height="25.23" rx="12.61" ry="12.61" transform="translate(360 595.62) rotate(180)"/>
+    </g>
+  </g>
+</svg>

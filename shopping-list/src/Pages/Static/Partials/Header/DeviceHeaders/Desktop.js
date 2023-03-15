@@ -67,24 +67,6 @@ function TopNav(props) {
     );
 }
 
-/*
-function NavItem(props) {
-    const [user] = useAuthState(auth);
-    const [open, setOpen] = useState(false);
-
-    return (
-        <li className="nav-item">
-
-            <Link to="#" className="icon-button icon-button-dimensions" onClick={() => setOpen(!open)}>
-                {props.icon}
-            </Link>
-
-            {open && props.children}
-        </li>
-    );
-}
-*/
-
 function UserPhoto() {
     const [user] = useAuthState(auth);
 
@@ -97,15 +79,6 @@ function UserPhoto() {
 
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
-
-    /*
-    const [menuHeight, setMenuHeight] = useState(null);
-
-    function calcHeight(el) {
-        const height = el.offsetHeight;
-        setMenuHeight(height);
-    }
-    */
 
     function DropdownItem(props) {
         if (props.route) {
