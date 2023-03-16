@@ -24,6 +24,7 @@ export default function Spirits() {
 
 function Whisky() {
     const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className='cursor-pointer rounded-[4px]'>
             <button
@@ -41,26 +42,62 @@ function Whisky() {
         </div>
     )
 }
+
 function Gin() {
+   const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className='cursor-pointer rounded-[4px]'>
-            <h3 className='text-[2rem] font-ssemibold'>Gin</h3>
+            <button
+                className='text-[2rem] font-ssemibold'
+                onClick={() => setIsOpen(!isOpen)}>
+                Gin
+            </button>
+            <Collapse isOpened={isOpen} className="">
+                <p>London Dry</p>
+                <p>Old Tom</p>
+                <p>Plymouth</p>
+                <p>Reserve</p>
+            </Collapse>
         </div>
     )
 }
 
 function Tequila() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className='cursor-pointer rounded-[4px]'>
-            <h3 className='text-[2rem] font-ssemibold'>Tequila</h3>
+            <button
+                className='text-[2rem] font-ssemibold'
+                onClick={() => setIsOpen(!isOpen)}>
+                Tequila
+            </button>
+            <Collapse isOpened={isOpen} className="">
+                <p>Blanco</p>
+                <p>Reposado</p>
+                <p>Anejo</p>
+            </Collapse>
         </div>
     )
 }
 
 function Rum() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <div className='cursor-pointer rounded-[4px]'>
-            <h3 className='text-[2rem] font-ssemibold'>Rum</h3>
+            <button
+                className='text-[2rem] font-ssemibold'
+                onClick={() => setIsOpen(!isOpen)}>
+                Rum
+            </button>
+            <Collapse isOpened={isOpen} className="">
+                <p>White</p>
+                <p>Gold</p>
+                <p>Dark</p>
+                <p>Spiced</p>
+            </Collapse>
         </div>
     )
 }
