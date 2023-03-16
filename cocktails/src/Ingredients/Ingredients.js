@@ -4,11 +4,9 @@ import { Helmet } from 'react-helmet'
 // Partials
 import Spirits from './Menus/Spirits'
 import Mixers from './Menus/Mixers'
+import Garnish from './Menus/Garnish'
 import Header from '../Static/Headers/Header'
 import Footer from '../Static/Footers/Footer'
-
-// Styles
-import "./collapse.css"
 
 export default function Ingredients() {
     return (
@@ -16,12 +14,18 @@ export default function Ingredients() {
             <Helmet>
                 <title>My Ingredients</title>
             </Helmet>
-            <div className="bg-main_bg_color text-text_white h-[100vh] flex flex-col">
+            <div className="bg-main_bg_color text-text_white min-h-[100vh] flex flex-col">
                 <Header />
-                <div className="w-full h-max basis-auto grow">
-                    <div className='m-auto bg-black rounded-[10px] min-h-full w-[90%] '>
-                        <Spirits />
-                        <Mixers />
+                <div className="w-full basis-auto grow">
+                    <div className='m-auto bg-black rounded-[10px] h-auto w-[90%] '>
+                        <div className='w-[90%] m-auto py-[2rem]'>
+                            <h1 className='text-[3.25rem] font-semibold pb-[1rem] m-auto'>My Ingredients</h1>
+                            <div className='on_desktop:grid on_desktop:grid-cols-2'>
+                                <Spirits />
+                                <Mixers />
+                                <Garnish />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <Footer />

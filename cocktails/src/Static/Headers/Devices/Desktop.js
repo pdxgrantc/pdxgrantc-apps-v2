@@ -20,7 +20,7 @@ export default function DesktopHeader() {
                 <div className="bg-dark_grey w-[100%] h-[80px]">
                     <div className="h-[100%] flex justify-between pr-[3vw]">
                         <Link to="/">
-                            <div className='flex gap-4 h-[100%] w-[25vw] bg-black pl-[2vw]'>
+                            <div className='flex gap-4 h-[100%] w-[28rem] bg-black pl-[2vw]'>
                                 <MartiniLight className='h-[4.5rem] my-auto'></MartiniLight>
                                 <h1 className="align-middle text-[3.25rem] font-bold cursor-pointer" to="/">Calculator</h1>
                             </div>
@@ -132,7 +132,6 @@ function DropdownMenu() {
 
     return (
         <div className="dropdown translate-x-[26%] top-[80px] w-[250px]">
-
             <CSSTransition
                 in={activeMenu === 'main'}
                 timeout={500}
