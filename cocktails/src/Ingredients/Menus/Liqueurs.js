@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Collapse from "react-collapse";
 
-export default function Garnish() {
+export default function Liqueurs() {
     const [isOpen, setIsOpen] = useState(true);
 
     return (
@@ -9,11 +9,11 @@ export default function Garnish() {
             <button
                 className='text-[2.5rem] font-semibold pb-[.25rem]'
                 onClick={() => setIsOpen(!isOpen)}>
-                Garnish
+                Liqueurs
             </button>
             <Collapse isOpened={isOpen} className="">
                 <div className='pl-5'>
-                    <Fruit />
+                    <Vermouth />
                     <Other />
                 </div>
             </Collapse>
@@ -21,8 +21,7 @@ export default function Garnish() {
     );
 }
 
-
-function Fruit() {
+function Vermouth() {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -30,14 +29,12 @@ function Fruit() {
             <button
                 className='text-[2rem] font-ssemibold'
                 onClick={() => setIsOpen(!isOpen)}>
-                Fruit
+                Vermouth
             </button>
             <Collapse isOpened={isOpen} className="">
                 <div className='grid grid-cols-2 pl-3'>
-                    <p>Oranges</p>
-                    <p>Lemons</p>
-                    <p>Limes</p>
-                    <p>Cherries</p>
+                    <p>Dry Vermouth</p>
+                    <p>Sweet Vermouth</p>
                 </div>
             </Collapse>
         </div>
@@ -56,14 +53,19 @@ function Other() {
             </button>
             <Collapse isOpened={isOpen} className="">
                 <div className='grid grid-cols-2 pl-3'>
-                    <p>Salt</p>
-                    <p>Olives</p>
-                    <p>Mint</p>
-                    <p>Celery</p>
-                    <p>Pickles</p>
-                    <p>Whipped Cream</p>
+                    <p>Amaretto</p>
+                    <p>Coffee Liqueur</p>
+                    <p>Irish Cream</p>
+                    <p>Orange Liqueur</p>
+                    <p>St. Germain</p>
+                    <p>Maraschino Liqueur</p>
+                    <p>Galliano</p>
+                    <p>Crème de Menthe</p>
+                    <p>Crème de Cacao</p>
+                    <p>Bénédictine D.O.M</p>
                 </div>
             </Collapse>
         </div>
     )
 }
+

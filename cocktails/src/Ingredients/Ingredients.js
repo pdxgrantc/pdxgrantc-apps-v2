@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 
 // Partials
 import Spirits from './Menus/Spirits'
+import Liqueurs from './Menus/Liqueurs'
 import Mixers from './Menus/Mixers'
 import Garnish from './Menus/Garnish'
 import Header from '../Static/Headers/Header'
@@ -22,6 +23,7 @@ export default function Ingredients() {
                             <h1 className='text-[3.25rem] font-semibold pb-[1rem] m-auto'>My Ingredients</h1>
                             <div className='on_desktop:grid on_desktop:grid-cols-2'>
                                 <Spirits />
+                                <Liqueurs />
                                 <Mixers />
                                 <Garnish />
                             </div>

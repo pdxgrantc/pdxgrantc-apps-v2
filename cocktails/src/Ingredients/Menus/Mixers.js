@@ -13,39 +13,14 @@ export default function Mixers() {
             </button>
             <Collapse isOpened={isOpen} className="">
                 <div className='pl-5'>
-                    <Vermouth />
                     <Bitters />
                     <Sodas />
                     <Juices />
                     <Other />
-                    <p></p>
-                    <p></p>
-                    <p></p>
-                    <p></p>
                 </div>
             </Collapse>
         </div>
     );
-}
-
-function Vermouth() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <div className='cursor-pointer rounded-[4px]'>
-            <button
-                className='text-[2rem] font-ssemibold'
-                onClick={() => setIsOpen(!isOpen)}>
-                Vermouth
-            </button>
-            <Collapse isOpened={isOpen} className="">
-                <div className='grid grid-cols-2 pl-3'>
-                    <p>Dry Vermouth</p>
-                    <p>Sweet Vermouth</p>
-                </div>
-            </Collapse>
-        </div>
-    )
 }
 
 function Bitters() {
@@ -64,13 +39,12 @@ function Bitters() {
                     <p>Peychaud's Bitters</p>
                     <p>Orange Bitters</p>
                     <p>Chocolate Bitters</p>
-                    <p>Grapefruit</p>
-                    <p>Chocolate</p>
-                    <p>Peach</p>
-                    <p>Lemon</p>
-                    <p>Cherry</p>
-                    <p>Plum</p>
-                    <p>Mint</p>
+                    <p>Grapefruit Bitters</p>
+                    <p>Peach Bitters</p>
+                    <p>Lemon Bitters</p>
+                    <p>Cherry Bitters</p>
+                    <p>Plum Bitters</p>
+                    <p>Mint Bitters</p>
                 </div>
             </Collapse>
         </div>
@@ -143,7 +117,7 @@ function Other() {
                     <p>Demerara Syrup</p>
                     <p>Grenadine</p>
                     <p>Cream</p>
-                    <p>Coffe</p>
+                    <p>Coffee</p>
                     <p>Tea</p>
                     <p>Tabasco Sauce</p>
                     <p>Worcestershire Sauce</p>
