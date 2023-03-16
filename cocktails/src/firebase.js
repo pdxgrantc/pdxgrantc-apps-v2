@@ -15,7 +15,6 @@ const firebaseConfig = {
     messagingSenderId: "269267686622",
     appId: "1:269267686622:web:ef7cd41e81d042891c9e4f"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
@@ -24,24 +23,23 @@ export const db = getFirestore(app);
 export const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider).then((result) => {
-        const user = result.user;
-        const path = "users/" + user.uid;
-        const docRef = doc(db, path);
-        getDoc(docRef).then((docSnap) => {
+        // create users collection in firestore
+        const userRef = doc(db, "users", result.user.uid);
+        getDoc(userRef).then((docSnap) => {
             if (!docSnap.exists()) {
-                setDoc(doc(db, path), {
-                    email: user.email,
-                    name: user.displayName,
-                    photo: user.photoURL,
-                    user_since: new Date(),
-                    friends: [],
+                setDoc(userRef, {
+                    displayName: result.user.displayName,
+                    email: result.user.email,
+                    photoURL: result.user.photoURL,
+                    uid: result.user.uid,
+                    createdAt: new Date(),
                 });
             }
         });
     }).catch((error) => {
         console.log(error);
     });
-};
+}
 
 export const signOutUser = () => {
     signOut(auth);

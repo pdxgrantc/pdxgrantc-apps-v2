@@ -21,7 +21,7 @@ export default function DesktopHeader() {
                     <div className="h-[100%] flex justify-between pr-[3vw]">
                         <Link to="/">
                             <div className='flex gap-4 h-[100%] w-[25vw] bg-black pl-[2vw]'>
-                                <MartiniLight className='h-20 my-auto'></MartiniLight>
+                                <MartiniLight className='h-[4.5rem] my-auto'></MartiniLight>
                                 <h1 className="align-middle text-[3.25rem] font-bold cursor-pointer" to="/">Calculator</h1>
                             </div>
                         </Link>
@@ -41,7 +41,7 @@ export default function DesktopHeader() {
                 <div className="h-[100%] flex justify-between pr-[3vw]">
                     <Link to="/">
                         <div className='flex gap-4 h-[100%] w-[25vw] bg-black pl-[2vw]'>
-                            <MartiniLight className='h-20 my-auto'></MartiniLight>
+                            <MartiniLight className='h-[4.5rem] my-auto'></MartiniLight>
                             <h1 className="align-middle text-[3.25rem] font-bold cursor-pointer" to="/">Calculator</h1>
                         </div>
                     </Link>
