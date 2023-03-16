@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Header */
 :root {
     --bg: #272727;
     --bg-accent: #141414;
