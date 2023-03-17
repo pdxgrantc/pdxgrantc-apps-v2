@@ -2,7 +2,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 
 // firebase
-import { signInWithGoogle } from '../../../firebase'
+import { signInWithGoogle } from '../firebase'
 
 export default function SignedOut() {
     return (
