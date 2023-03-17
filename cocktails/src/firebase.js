@@ -28,7 +28,6 @@ export const signInWithGoogle = () => {
         const userRef = doc(db, "users", result.user.uid);
         getDoc(userRef).then((docSnap) => {
             if (!docSnap.exists()) {
-
                 setDoc(userRef, {
                     displayName: result.user.displayName,
                     email: result.user.email,

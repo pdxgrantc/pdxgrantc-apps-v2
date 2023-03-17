@@ -6,6 +6,7 @@ import { auth } from '../firebase'
 
 // Partials
 import SignedOut from '../Static/SignedOut'
+import MyItems from './MyItems'
 import Spirits from './Menus/Spirits'
 import Liqueurs from './Menus/Liqueurs'
 import Mixers from './Menus/Mixers'
@@ -30,6 +31,7 @@ export default function Ingredients() {
                             <div className='w-[90%] m-auto py-[2rem]'>
                                 <h1 className='text-[3.25rem] font-semibold pb-[1rem] m-auto'>My Ingredients</h1>
                                 <div className='on_desktop:grid on_desktop:grid-cols-2'>
+                                    <MyItems />
                                     <Spirits />
                                     <Liqueurs />
                                     <Mixers />
