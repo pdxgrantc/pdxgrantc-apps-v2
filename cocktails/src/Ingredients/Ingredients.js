@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 
 // Firebase
 import { auth } from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 // Partials
 import SignedOut from '../Static/SignedOut'
@@ -16,9 +17,24 @@ import Footer from '../Static/Footers/Footer'
 
 
 export default function Ingredients() {
-    const user = auth.currentUser
+    const [user] = useAuthState(auth);
 
-    if (user) {
+    if (!user) {
+        return (
+            <>
+                <div className="mx-auto bg-main_bg_color text-text_white min-h-[100vh] flex flex-col">
+                    <Header />
+                    <div className="w-full basis-auto grow">
+                        <div className='mx-auto w-fit'>
+                            <SignedOut />
+                        </div>
+                    </div>
+                    <Footer />
+                </div>
+            </>
+        )
+    }
+    else {
         return (
             <>
                 <Helmet>
@@ -38,21 +54,6 @@ export default function Ingredients() {
                                     <Garnish />
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <Footer />
-                </div>
-            </>
-        )
-    }
-    else {
-        return (
-            <>
-                <div className="mx-auto bg-main_bg_color text-text_white min-h-[100vh] flex flex-col">
-                    <Header />
-                    <div className="w-full basis-auto grow">
-                        <div className='mx-auto w-fit'>
-                            <SignedOut />
                         </div>
                     </div>
                     <Footer />
