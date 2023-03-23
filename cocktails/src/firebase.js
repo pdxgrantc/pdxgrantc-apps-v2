@@ -35,253 +35,450 @@ export const signInWithGoogle = () => {
                     uid: result.user.uid,
                     createdAt: new Date(),
                     // include ingredients object
-                    ingriedients: {
-                        spirits: {
-                            whisky: {
+                    ingredients: {
+                        names: [
+                            "Spirits",
+                            "Liqueurs",
+                            "Mixers",
+                            "Garnish",
+                        ],
+                        Spirits: {
+                            names: [
+                                "Whisky",
+                                "Gin",
+                                "Tequila",
+                                "Rum",
+                                "Vodka",
+                            ],
+                            Whisky: {
+                                names: [
+                                    "Bourbon",
+                                    "Rye",
+                                    "Scotch",
+                                    "Irish",
+                                    "Corn",
+                                ],
                                 bourbon: {
+                                    name: "Bourbon",
                                     value: false,
                                 },
                                 rye: {
+                                    name: "Rye",
                                     value: false,
                                 },
                                 scotch: {
+                                    name: "Scotch",
                                     value: false,
                                 },
                                 irish: {
+                                    name: "Irish",
                                     value: false,
                                 },
                                 corn: {
+                                    name: "Corn",
                                     value: false,
                                 },
                             },
-                            gin: {
-                                london_dry: {
+                            Gin: {
+                                names: [
+                                    "London_Dry",
+                                    "Old_Tom",
+                                    "Plymouth",
+                                    "Reserve",
+                                ],
+                                London_Dry: {
+                                    name: "London Dry",
                                     value: false,
                                 },
                                 old_tom: {
+                                    name: "Old Tom",
                                     value: false,
                                 },
-                                plymouth: {
+                                Plymouth: {
+                                    name: "Plymouth",
                                     value: false,
                                 },
-                                reserve: {
-                                    value: false,
-                                },
-                            },
-                            tequila: {
-                                blanco: {
-                                    value: false,
-                                },
-                                reposado: {
-                                    value: false,
-                                },
-                                anejo: {
+                                Reserve: {
+                                    name: "Reserve",
                                     value: false,
                                 },
                             },
-                            rum: {
-                                white: {
+                            Tequila: {
+                                names: [
+                                    "Blanco",
+                                    "Reposado",
+                                    "Anejo",
+                                ],
+                                Blanco: {
+                                    name: "Blanco",
                                     value: false,
                                 },
-                                gold: {
+                                Reposado: {
+                                    name: "Reposado",
                                     value: false,
                                 },
-                                dark: {
-                                    value: false,
-                                },
-                                spiced: {
+                                Anejo: {
+                                    name: "Anejo",
                                     value: false,
                                 },
                             },
-                            vodka: {
-                                plain: {
+                            Rum: {
+                                names: [
+                                    "White",
+                                    "Gold",
+                                    "Dark",
+                                    "Spiced",
+                                ],
+                                White: {
+                                    name: "White",
                                     value: false,
                                 },
-                                rye: {
+                                Gold: {
+                                    name: "Gold",
                                     value: false,
                                 },
-                                potato: {
+                                Dark: {
+                                    name: "Dark",
+                                    value: false,
+                                },
+                                Spiced: {
+                                    name: "Spiced",
+                                    value: false,
+                                },
+                            },
+                            Vodka: {
+                                names: [
+                                    "Plain",
+                                    "Rye",
+                                    "Potato",
+                                ],
+                                Plain: {
+                                    name: "Plain",
+                                    value: false,
+                                },
+                                Rye: {
+                                    name: "Rye",
+                                    value: false,
+                                },
+                                Potato: {
+                                    name: "Potato",
                                     value: false,
                                 },
                             }
                         },
-                        liqueurs: {
-                            vermouth: {
-                                sweet: {
+                        Liqueurs: {
+                            names: [
+                                "Vermouth",
+                                "Other",
+                            ],
+                            Vermouth: {
+                                names: [
+                                    "Sweet",
+                                    "Dry",
+                                ],
+                                Sweet: {
+                                    name: "Sweet",
                                     value: false,
                                 },
-                                dry: {
+                                Dry: {
+                                    name: "Dry",
                                     value: false,
                                 },
                             },
-                            other: {
-                                amaretto: {
+                            Other: {
+                                names: [
+                                    "Amaretto",
+                                    "Irish_Cream",
+                                    "Orange_Liqueur",
+                                    "St_Germain",
+                                    "Maraschino_Liqueur",
+                                    "Galliano",
+                                    "Crème_de_Menthe",
+                                    "Crème_de_Cacao",
+                                    "Bénédictine",
+                                ],
+                                Amaretto: {
+                                    name: "Amaretto",
                                     value: false,
                                 },
-                                irish_cream: {
+                                Irish_Cream: {
+                                    name: "Irish Cream",
                                     value: false,
                                 },
-                                orange_liqueur: {
+                                Orange_Liqueur: {
+                                    name: "Orange Liqueur",
                                     value: false,
                                 },
-                                st_germain: {
+                                St_Germain: {
+                                    name: "St. Germain",
                                     value: false,
                                 },
-                                maraschino_liqueur: {
+                                Maraschino_Liqueur: {
+                                    name: "Maraschino Liqueur",
                                     value: false,
                                 },
-                                galliano: {
+                                Galliano: {
+                                    name: "Galliano",
                                     value: false,
                                 },
-                                crème_de_menthe: {
+                                Crème_de_Menthe: {
+                                    name: "Crème de Menthe",
                                     value: false,
                                 },
-                                crème_de_cacao: {
+                                Crème_de_Cacao: {
+                                    name: "Crème de Cacao",
                                     value: false,
                                 },
-                                bénédictine: {
+                                Bénédictine: {
+                                    name: "Bénédictine",
                                     value: false,
                                 },
                             }
                         },
-                        mixers: {
-                            bitters: {
+                        Mixers: {
+                            names: [
+                                "Biters",
+                                "Soda",
+                                "Juice",
+                                "Other",
+                            ],
+                            Biters: {
+                                names: [
+                                    "Angostura",
+                                    "Peychauds",
+                                    "Orange",
+                                    "Chocolate",
+                                    "Grapefruit",
+                                    "Peach",
+                                    "Lemon",
+                                    "Cherry",
+                                    "Plum",
+                                    "Mint",
+                                ],
                                 angostura: {
+                                    name: "Angostura",
                                     value: false,
                                 },
-                                peychauds: {
+                                Peychauds: {
+                                    name: "Peychaud's",
                                     value: false,
                                 },
                                 orange: {
+                                    name: "Orange",
                                     value: false,
                                 },
                                 chocolate: {
+                                    name: "Chocolate",
                                     value: false,
                                 },
                                 grapefruit: {
+                                    name: "Grapefruit",
                                     value: false,
                                 },
                                 peach: {
+                                    name: "Peach",
                                     value: false,
                                 },
                                 lemon: {
+                                    name: "Lemon",
                                     value: false,
                                 },
                                 cherry: {
+                                    name: "Cherry",
                                     value: false,
                                 },
                                 plum: {
+                                    name: "Plum",
                                     value: false,
                                 },
                                 mint: {
+                                    name: "Mint",
                                     value: false,
                                 },
                             },
-                            soda: {
-                                club_soda: {
+                            Soda: {
+                                names: [
+                                    "Club_Soda",
+                                    "Tonic",
+                                    "Ginger_Ale",
+                                    "Ginger_Beer",
+                                    "Lemon_Lime",
+                                    "Cola",
+                                ],
+                                Club_Soda: {
+                                    name: "Club Soda",
                                     value: false,
                                 },
-                                tonic: {
+                                Tonic: {
+                                    name: "Tonic",
                                     value: false,
                                 },
-                                ginger_ale: {
+                                Ginger_Ale: {
+                                    name: "Ginger Ale",
                                     value: false,
                                 },
-                                ginger_beer: {
+                                Ginger_Beer: {
+                                    name: "Ginger Beer",
                                     value: false,
                                 },
-                                lemon_lime: {
+                                Lemon_Lime: {
+                                    name: "Lemon Lime",
                                     value: false,
                                 },
-                                cola: {
-                                    value: false,
-                                },
-                            },
-                            juice: {
-                                lemon: {
-                                    value: false,
-                                },
-                                lime: {
-                                    value: false,
-                                },
-                                orange: {
-                                    value: false,
-                                },
-                                cranberry: {
-                                    value: false,
-                                },
-                                grapefruit: {
-                                    value: false,
-                                },
-                                pineapple: {
-                                    value: false,
-                                },
-                                tomato: {
+                                Cola: {
+                                    name: "Cola",
                                     value: false,
                                 },
                             },
-                            other: {
-                                simple_syrup: {
+                            Juice: {
+                                names: [
+                                    "Lemon",
+                                    "Lime",
+                                    "Orange",
+                                    "Cranberry",
+                                    "Grapefruit",
+                                    "Pineapple",
+                                    "Tomato",
+                                ],
+                                Lemon: {
+                                    name: "Lemon",
                                     value: false,
                                 },
-                                agave_syrup: {
+                                Lime: {
+                                    name: "Lime",
                                     value: false,
                                 },
-                                demerara_syrup: {
+                                Orange: {
+                                    name: "Orange",
                                     value: false,
                                 },
-                                grenadine: {
+                                Cranberry: {
+                                    name: "Cranberry",
                                     value: false,
                                 },
-                                cream: {
+                                Grapefruit: {
+                                    name: "Grapefruit",
                                     value: false,
                                 },
-                                coffee: {
+                                Pineapple: {
+                                    name: "Pineapple",
                                     value: false,
                                 },
-                                tea: {
+                                Tomato: {
+                                    name: "Tomato",
                                     value: false,
                                 },
-                                tabasco: {
+                            },
+                            Other: {
+                                names: [
+                                    "Simple Syrup",
+                                    "Agave Syrup",
+                                    "Demerara Syrup",
+                                    "Grenadine",
+                                    "Cream",
+                                    "Coffee",
+                                    "Tea",
+                                    "Tabasco",
+                                    "Worcestershire",
+                                ],
+                                Simple_Syrup: {
+                                    name: "Simple Syrup",
                                     value: false,
                                 },
-                                worcestershire: {
+                                Agave_Syrup: {
+                                    name: "Agave Syrup",
+                                    value: false,
+                                },
+                                Demerara_Syrup: {
+                                    name: "Demerara Syrup",
+                                    value: false,
+                                },
+                                Grenadine: {
+                                    name: "Grenadine",
+                                    value: false,
+                                },
+                                Cream: {
+                                    name: "Cream",
+                                    value: false,
+                                },
+                                Coffee: {
+                                    name: "Coffee",
+                                    value: false,
+                                },
+                                Tea: {
+                                    name: "Tea",
+                                    value: false,
+                                },
+                                Tabasco: {
+                                    name: "Tabasco",
+                                    value: false,
+                                },
+                                Worcestershire: {
+                                    name: "Worcestershire",
                                     value: false,
                                 },
                             },
                         },
-                        garnish: {
-                            fruit: {
-                                orange: {
+                        Garnish: {
+                            names: [
+                                "Fruit",
+                                "Other",
+                            ],
+                            Fruit: {
+                                names: [
+                                    "Orange",
+                                    "Lemon",
+                                    "Lime",
+                                    "Cherries",
+                                ],
+                                Orange: {
+                                    name: "Orange",
                                     value: false,
                                 },
-                                lemon: {
+                                Lemon: {
+                                    name: "Lemon",
                                     value: false,
                                 },
-                                lime: {
+                                Lime: {
+                                    name: "Lime",
                                     value: false,
                                 },
-                                cherries: {
+                                Cherries: {
+                                    name: "Cherries",
                                     value: false,
                                 },
                             },
-                            other: {
-                                salt: {
+                            Other: {
+                                names: [
+                                    "Salt",
+                                    "Olives",
+                                    "Mint",
+                                    "Celery",
+                                    "Pickles",
+                                    "Whipped Cream",
+                                ],
+                                Salt: {
+                                    name: "Salt",
                                     value: false,
                                 },
-                                olives: {
+                                Olives: {
+                                    name: "Olives",
                                     value: false,
                                 },
-                                mint: {
+                                Mint: {
+                                    name: "Mint",
                                     value: false,
                                 },
-                                celery: {
+                                Celery: {
+                                    name: "Celery",
                                     value: false,
                                 },
-                                pickles: {
+                                Pickles: {
+                                    name: "Pickles",
                                     value: false,
                                 },
-                                whipped_cream: {
+                                Whipped_Cream: {
+                                    name: "Whipped Cream",
                                     value: false,
                                 },
                             },
