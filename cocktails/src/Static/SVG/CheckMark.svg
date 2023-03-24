@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="CheckMark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #d6d6d6;
+      }
+    </style>
+  </defs>
+  <rect class="cls-1" x="133.21" y="168.13" width="134.3" height="23.73" rx="11.87" ry="11.87" transform="translate(469.31 165.6) rotate(135)"/>
+  <rect class="cls-1" x="100.29" y="186.97" width="81.04" height="23.73" rx="11.87" ry="11.87" transform="translate(99.79 438.99) rotate(-135)"/>
+</svg>
