@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Helmet } from 'react-helmet'
+import { Collapse } from 'react-collapse'
 
 // Firebase
-import { auth } from '../firebase'
+import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { doc, getDoc } from 'firebase/firestore'
 
 // Partials
 import SignedOut from '../Static/SignedOut'
@@ -22,6 +24,34 @@ import { ReactComponent as CheckBox } from '../Static/SVG/CheckBox.svg'
 
 export default function Ingredients() {
     const [user] = useAuthState(auth);
+    const [userDoc, setUserDoc] = useState(null)
+    const [userSpirits, setUserSpirits] = useState(null)
+    const [userLiqueurs, setUserLiqueurs] = useState(null)
+    const [userMixers, setUserMixers] = useState(null)
+    const [userGarnish, setUserGarnish] = useState(null)
+
+    const Spirits = null
+    const Liqueurs = null
+    const Mixers = null
+    const Garnish = null
+
+    useEffect(() => {
+        const getUserDoc = async () => {
+            if (user && user.uid) {
+                const docRef = doc(db, "users", user.uid)
+                const docSnap = await getDoc(docRef)
+                if (docSnap.exists()) {
+                    setUserDoc(docSnap.data().Garnish)
+                    setUserSpirits(docSnap.data().Spirits)
+                    setUserLiqueurs(docSnap.data().Liqueurs)
+                    setUserMixers(docSnap.data().Mixers)
+                    setUserGarnish(docSnap.data().Garnish)
+                } // else no such document
+            }
+        }
+        getUserDoc()
+    }, [user])
+
 
     if (!user) {
         return (
@@ -57,12 +87,15 @@ export default function Ingredients() {
                                     <Liqueurs />
                                     <Mixers />
                                     <Garnish />
+                                    
+                                    <TopItem name={"Spirits"} data={userDoc.Spirits} />
+                                    <TopItem name={"Liqueurs"} data={userDoc.Liqueurs} />
+                                    <TopItem name={"Mixers"} data={userDoc.Mixers} />
                                     */}
-                                    <TopItem name={"Spirits"} />
-                                    <TopItem name={"Liqueurs"} />
-                                    <TopItem name={"Mixers"} />
-                                    <TopItem name={"Spirits"} />
-                                    <BottomItem name='test' />
+                                    <TopItem name={"Spirits"} data={userSpirits} />
+                                    <TopItem name={"Liqueurs"} data={userLiqueurs} />
+                                    <TopItem name={"Mixers"} data={userMixers} />
+                                    <TopItem name={"Garnish"} data={userGarnish} />
                                 </div>
                             </div>
                         </div>
@@ -74,14 +107,45 @@ export default function Ingredients() {
     }
 }
 
-function TopItem() {
+function TopItem(props) {
+    const {isOpen, setIsOpen} = useState(true)
+
+    if ((props.data) && (props.name)) {
+        const children = Object.keys(props.data)
+        // return map of children over BottomItem
+        return (
+            <>
+                <div className='on_desktop:grid on_desktop:grid-cols-2'>
+                    <div className='on_desktop:col-span-2'>
+                        <h2 className='text-[2.25rem] font-semibold pb-[1rem] m-auto'>{props.name}</h2>
+                    </div>
+                    {children.map((child, index) => {
+                        return (
+                            <BottomItem name={child} key={index} />
+                        )
+                    }
+                    )}
+                </div>
+            </>
+        )
+    }
+    else {
+        return (
+            <div className='text-[2rem] font-semibold'>
+                Loading...
+            </div>
+        )
+    }
+}
+
+function BottomItem(props) {
     return (
         <>
         </>
     )
 }
 
-function BottomItem(props) {
+function Item(props) {
     const [isChecked, setIsChecked] = useState(false)
 
     return (
