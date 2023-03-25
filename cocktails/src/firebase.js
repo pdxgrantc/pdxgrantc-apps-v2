@@ -196,8 +196,8 @@ export const signInWithGoogle = () => {
                         }
                     },
                     Mixers: {
-                        Biters: {
-                            name: "Biters",
+                        Bitters: {
+                            name: "Bitters",
                             items: {
                                 angostura: {
                                     name: "Angostura",
