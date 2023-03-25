@@ -9,8 +9,17 @@ import { doc, getDoc } from 'firebase/firestore'
 
 // Partials
 import SignedOut from '../Static/SignedOut'
+// import MyItems from './MyItems'
+import Spirits from './Menus/Spirits.js.old'
+//import Liqueurs from './Menus/Liqueurs'
+import Mixers from './Menus/Mixers.js.old'
+import Garnish from './Menus/Garnish.js.old'
 import Header from '../Static/Headers/Header'
 import Footer from '../Static/Footers/Footer'
+
+// SVGs
+import { ReactComponent as CheckMark } from '../Static/SVG/CheckMark.svg'
+import { ReactComponent as CheckBox } from '../Static/SVG/CheckBox.svg'
 
 
 export default function Ingredients() {
@@ -20,6 +29,11 @@ export default function Ingredients() {
     const [userLiqueurs, setUserLiqueurs] = useState(null)
     const [userMixers, setUserMixers] = useState(null)
     const [userGarnish, setUserGarnish] = useState(null)
+
+    const Spirits = null
+    const Liqueurs = null
+    const Mixers = null
+    const Garnish = null
 
     useEffect(() => {
         const getUserDoc = async () => {
@@ -37,6 +51,7 @@ export default function Ingredients() {
         }
         getUserDoc()
     }, [user])
+
 
     if (!user) {
         return (
@@ -69,8 +84,8 @@ export default function Ingredients() {
                                     {(userDoc) ?
                                         <>
                                             <TopItem name={"Spirits"} data={userSpirits} />
-                                            <TopItem name={"Mixers"} data={userMixers} />
                                             <TopItem name={"Liqueurs"} data={userLiqueurs} />
+                                            <TopItem name={"Mixers"} data={userMixers} />
                                             <TopItem name={"Garnish"} data={userGarnish} />
                                         </>
                                         :
@@ -95,14 +110,14 @@ function TopItem(props) {
         // return map of children over BottomItem
         return (
             <>
-                <div className='rounded-[4px] w-[100%] h-[100%]'>
+                <div className='rounded-[4px]'>
                     <button
                         className='text-[2.5rem] font-semibold pb-[.25rem]'
                         onClick={() => setIsOpen(!isOpen)}>
                         {props.name}
                     </button>
                     <Collapse isOpened={isOpen} className="">
-                        <div className='pl-[1.75rem]'>
+                        <div className=''>
                             {children.map((child, index) => {
                                 return (
                                     <BottomItem name={child} key={index} data={props.data[child]} />
@@ -130,14 +145,14 @@ function BottomItem(props) {
         const children = Object.keys(props.data.items)
         return (
             <>
-                <div className=' rounded-[4px]'>
+                <div className='cursor-pointer rounded-[4px]'>
                     <button
-                        className='cursor-pointer text-[2rem] font-ssemibold'
+                        className='text-[2rem] font-ssemibold'
                         onClick={() => setIsOpen(!isOpen)}>
                         {props.name}
                     </button>
-                    <Collapse isOpened={isOpen} class="">
-                        <div className=''>
+                    <Collapse isOpened={isOpen} className="">
+                        <div className='grid grid-cols-2 pl-3'>
                             {children.map((child, index) => {
                                 return (
                                     <Item key={index} data={props.data.items[child]} />
@@ -156,10 +171,10 @@ function Item(props) {
 
     return (
         <>
-            <button className='flex gap-2 pl-5 cursor-pointer' onClick={() => setIsChecked(!isChecked)}>
-                <p className='whitespace-nowrap text-[1.5rem] align-middle h-fit my-auto'>{props.data.name}</p>
-                {isChecked ? <img className='h-[1.5rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckMark.png')} alt="I have it" /> : <img className='h-[1.5rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckBox.png')} alt="I don't have it" />}
-            </button>
+            <div className='flex justify-around gap-2'>
+                <p className='whitespace-nowrap'>{props.data.name}</p>
+                {isChecked ? <CheckMark className='w-5 h-auto' /> : <CheckBox />}
+            </div>
         </>
     )
 }
