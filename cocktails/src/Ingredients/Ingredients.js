@@ -74,7 +74,7 @@ export default function Ingredients() {
                                             <TopItem name={"Garnish"} data={userGarnish} />
                                         </>
                                         :
-                                        <h2>Loading...</h2>
+                                        <h2 className='text-[2.5rem]'>Loading...</h2>
                                     }
                                 </div>
                             </div>
@@ -140,7 +140,7 @@ function BottomItem(props) {
                         <div className=''>
                             {children.map((child, index) => {
                                 return (
-                                    <Item top={props.top} key={index} data={props.data.items[child]} />
+                                    <Item top={props.top} bottom={props.name} key={index} data={props.data.items[child]} />
                                 )
                             })}
                         </div>
@@ -154,17 +154,24 @@ function BottomItem(props) {
 function Item(props) {
     const [isChecked, setIsChecked] = useState(props.data.value)
 
+    /*
     const updateItem = async (item) => {
         const docRef = doc(db, "users", user.uid)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
             docRef.update({
+    */
+
+    console.log(props.top + " " + props.bottom + " " + props.data.name)
 
     return (
         <>
-            <button className='ml-10 flex gap-2 cursor-pointer hover:bg-text_grey/60 px-5 py-[.1rem] rounded-[4px]' onClick={() => setIsChecked(!isChecked) }>
+            <button className='ml-10 flex gap-2 cursor-pointer hover:bg-text_grey/60 px-5 py-[.1rem] rounded-[4px]' onClick={() => setIsChecked(!isChecked)}>
+                {isChecked ?
+                    <img className='h-[1.3rem] py-[0.15rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckMark.png')} alt="I have it" /> :
+                    <img className='h-[1.5rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckBox.png')} alt="I don't have it" />
+                }
                 <p className='whitespace-nowrap text-[1.5rem] align-middle h-fit my-auto'>{props.data.name}</p>
-                {isChecked ? <img className='h-[1.3rem] py-[0.15rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckMark.png')} alt="I have it" /> : <img className='h-[1.5rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckBox.png')} alt="I don't have it" />}
             </button>
         </>
     )
