@@ -5,7 +5,7 @@ import { Collapse } from 'react-collapse'
 // Firebase
 import { auth, db } from '../firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 // Partials
 import SignedOut from '../Static/SignedOut'
@@ -154,19 +154,27 @@ function BottomItem(props) {
 function Item(props) {
     const [isChecked, setIsChecked] = useState(props.data.value)
 
-    /*
-    const updateItem = async (item) => {
+    const [user] = useAuthState(auth);
+
+    async function updateItem() {
         const docRef = doc(db, "users", user.uid)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
-            docRef.update({
-    */
+            const data = docSnap.data()
+            const top = data[props.top]
+            const bottom = top[props.bottom]
+            const item = bottom.items[props.data.name]
+            item.value = !item.value
+            setIsChecked(item.value)
+            await setDoc(docRef, data)
+        }
+    }
 
-    console.log(props.top + " " + props.bottom + " " + props.data.name)
+    //console.log(props.top + " " + props.bottom + " " + props.data.name)
 
     return (
         <>
-            <button className='ml-10 flex gap-2 cursor-pointer hover:bg-text_grey/60 px-5 py-[.1rem] rounded-[4px]' onClick={() => setIsChecked(!isChecked)}>
+            <button className='ml-10 flex gap-2 cursor-pointer hover:bg-text_grey/60 px-5 py-[.1rem] rounded-[4px]' onClick={() => updateItem()}>
                 {isChecked ?
                     <img className='h-[1.3rem] py-[0.15rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckMark.png')} alt="I have it" /> :
                     <img className='h-[1.5rem] w-auto my-auto pt-[3px]' src={require('../Static/Images/CheckBox.png')} alt="I don't have it" />
