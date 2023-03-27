@@ -157,13 +157,15 @@ function Item(props) {
     const [user] = useAuthState(auth);
 
     async function updateItem() {
+        //console.log(props.data)
+        //console.log("updating " + props.top + " " + props.bottom + " " + props.data.db_name)
         const docRef = doc(db, "users", user.uid)
         const docSnap = await getDoc(docRef)
         if (docSnap.exists()) {
             const data = docSnap.data()
             const top = data[props.top]
             const bottom = top[props.bottom]
-            const item = bottom.items[props.data.name]
+            const item = bottom.items[props.data.db_name]
             item.value = !item.value
             setIsChecked(item.value)
             await setDoc(docRef, data)

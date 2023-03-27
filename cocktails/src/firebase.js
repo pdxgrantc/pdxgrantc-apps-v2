@@ -29,16 +29,12 @@ export const signInWithGoogle = () => {
         getDoc(userRef).then((docSnap) => {
             if (!docSnap.exists()) {
                 setDoc(userRef, {
-                    displayName: result.user.displayName,
-                    email: result.user.email,
-                    photoURL: result.user.photoURL,
-                    uid: result.user.uid,
-                    createdAt: new Date(),
+                    
                     // include ingredients object
                     Spirits: [
                         {
                             Whisky: {
-                                name: "Whisky",
+                                db_name: "Whisky",
                                 items: [
                                     {
                                         Bourbon: {
@@ -80,7 +76,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Gin: {
-                                name: "Gin",
+                                db_name: "Gin",
                                 items: [
                                     {
                                         London_Dry: {
@@ -115,7 +111,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Tequila: {
-                                name: "Tequila",
+                                db_name: "Tequila",
                                 items: [
                                     {
                                         Blanco: {
@@ -143,7 +139,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Rum: {
-                                name: "Rum",
+                                db_name: "Rum",
                                 items: [
                                     {
                                         White: {
@@ -178,7 +174,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Vodka: {
-                                name: "Vodka",
+                                db_name: "Vodka",
                                 items: [
                                     {
                                         Grain: {
@@ -209,7 +205,7 @@ export const signInWithGoogle = () => {
                     Liqueurs: [
                         {
                             Vermouth: {
-                                name: "Vermouth",
+                                db_name: "Vermouth",
                                 items: [
                                     {
                                         Sweet: {
@@ -230,7 +226,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Other: {
-                                name: "Other",
+                                db_name: "Other",
                                 items: [
                                     {
                                         Amaretto: {
@@ -302,7 +298,7 @@ export const signInWithGoogle = () => {
                     Mixers: [
                         {
                             Bitters: {
-                                name: "Bitters",
+                                db_name: "Bitters",
                                 items: [
                                     {
                                         Angostura: {
@@ -379,7 +375,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Soda: {
-                                name: "Soda",
+                                db_name: "Soda",
                                 items: [
                                     {
                                         Club_Soda: {
@@ -428,7 +424,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Juice: {
-                                name: "Juice",
+                                db_name: "Juice",
                                 items: [
                                     {
                                         Lemon: {
@@ -484,7 +480,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Other: {
-                                name: "Other",
+                                db_name: "Other",
                                 items: [
                                     {
                                         Simple_Syrup: {
@@ -562,7 +558,6 @@ export const signInWithGoogle = () => {
                     ],
                     Garnish: [
                         {
-                            name: "Garnish",
                             Fruit: {
                                 items: [
                                     {
@@ -598,7 +593,7 @@ export const signInWithGoogle = () => {
                         },
                         {
                             Other: {
-                                name: "Other",
+                                db_name: "Other",
                                 items: [
                                     {
                                         Salt: {
@@ -646,6 +641,11 @@ export const signInWithGoogle = () => {
                             },
                         },
                     ],
+                    displayName: result.user.displayName,
+                    email: result.user.email,
+                    photoURL: result.user.photoURL,
+                    uid: result.user.uid,
+                    createdAt: new Date(),
                 });
             }
         });
